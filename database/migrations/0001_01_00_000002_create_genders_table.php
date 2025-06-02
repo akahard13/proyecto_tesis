@@ -21,9 +21,8 @@ return new class extends Migration
         });
         $now = now()->toDateTimeString();
         $gender = [
-            ['name' => 'Administrador', 'created_at' => $now],
-            ['name' => 'Cliente', 'created_at' => $now],
-            ['name' => 'Invitado', 'created_at' => $now],
+            ['name' => 'Masculino', 'created_at' => $now],
+            ['name' => 'Femenino', 'created_at' => $now],
         ];
         DB::table('catalogs.gender')->insert($gender);
     }
