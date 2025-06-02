@@ -11,11 +11,12 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('permission_id')->constrained('system.permissions');
             $table->foreignId('page_id')->constrained('system.pages');
+            $table->foreignId('user_id')->constrained('system.users');
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
 
-            $table->unique(['permission_id', 'page_id']);
+            $table->unique(['permission_id', 'page_id', 'user_id']);
         });
     }
 

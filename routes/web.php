@@ -16,12 +16,14 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+})->middleware(['auth', 'verified', 'CheckPermission'])->name('dashboard');
+Route::get('/restricted', function () {
+    return Inertia::render('Restriction');
+})->middleware(['auth', 'verified'])->name('restricted');
+Route::middleware(['auth', 'CheckPermission'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

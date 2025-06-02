@@ -2,11 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\HasPermissions;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    use HasPermissions;
     /**
      * The root template that is loaded on the first page visit.
      *
@@ -33,6 +35,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'permissions' => $this->getCustomPermissions($request->user()->id??null),
             ],
         ];
     }

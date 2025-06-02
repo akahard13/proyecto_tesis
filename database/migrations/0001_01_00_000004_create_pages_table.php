@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('system.pages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('url');
             $table->string('icon')->nullable();
             $table->integer('index')->default(0);
