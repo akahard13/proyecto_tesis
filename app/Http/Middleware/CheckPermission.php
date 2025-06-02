@@ -19,14 +19,16 @@ class CheckPermission extends Middleware
      */
     public function handle($request, Closure $next)
     {
-        $excludedRoutes = ['restricted']; 
+        $excludedRouteNames = ['restricted', 'profile', 'password', 'logout', 'login', 'register', 'verification'];
+        $routeName = $request->route()->getName();
 
-        if (in_array($request->path(), $excludedRoutes)) {
+        $prefix = explode('.', $routeName)[0];
+        if (in_array($prefix, $excludedRouteNames)) {
             return $next($request);
         }
         $page = $request->path();
         $permissionToCheck = $page . '.view';
-        if (! $this->validatePermission($permissionToCheck, $request->user()->id)) {
+        if (! $this->validatePermission($permissionToCheck, $request->user()->id ?? null)) {
             return redirect()->route('restricted');
         }
 
