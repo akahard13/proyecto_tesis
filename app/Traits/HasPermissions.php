@@ -16,10 +16,11 @@ trait HasPermissions
             ->join('system.pages as p', 'pg.page_id', '=', 'p.id')
             ->join('system.users as u', 'pg.rol_id', '=', 'u.rol_id')
             ->where('u.id', $user_id)
-            ->selectRaw("CONCAT(p.slug, '.', pm.name) as permission_name")
-            ->pluck('permission_name')
+            ->selectRaw("CONCAT(p.slug, '.', pm.name) as permission_name, p.name as page_name")
+            ->get()
             ->toArray();
     }
+
     public function validatePermission($permissionName, $user_id)
     {
         return DB::table('system.permissions_granted AS pg')
