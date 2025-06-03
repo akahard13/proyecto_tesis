@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('system.users', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->unsignedBigInteger('rol_id');
             $table->string('table_reference')->nullable();
             $table->unsignedBigInteger('reference_id')->nullable();
@@ -42,6 +43,16 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+        $users = [
+            [
+                'username' => 'admin',
+                'email' => '6L2oT@example.com',
+                'rol_id' => 1,
+                'password' => '$2y$12$ZXfai0fr/UVht0OodMuSfuzn67gTqf31TZG.4xhYf9olcEJYNMa.y', // Temp#2025
+                'created_at' => now(),
+            ]
+        ];
+        DB::table('system.users')->insert($users);
     }
 
     /**

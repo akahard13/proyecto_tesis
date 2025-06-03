@@ -30,21 +30,18 @@ return new class extends Migration
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now,
-                'updated_at' => $now
             ],
             [
                 'name' => 'Cliente',
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now,
-                'updated_at' => $now
             ],
             [
                 'name' => 'Invitado',
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now,
-                'updated_at' => $now
             ]
         ];
 

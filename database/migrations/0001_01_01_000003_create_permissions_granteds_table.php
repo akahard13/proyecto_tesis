@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
@@ -11,13 +12,21 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('permission_id')->constrained('system.permissions');
             $table->foreignId('page_id')->constrained('system.pages');
-            $table->foreignId('user_id')->constrained('system.users');
+            $table->foreignId('rol_id')->constrained('system.roles');
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
 
-            $table->unique(['permission_id', 'page_id', 'user_id']);
+            $table->unique(['permission_id', 'page_id', 'rol_id']);
         });
+        $permissions = [
+            [
+                'permission_id' => 1,
+                'page_id' => 1,
+                'rol_id' => 1
+            ]
+        ];
+        DB::table('system.permissions_granted')->insert($permissions);
     }
 
     public function down(): void

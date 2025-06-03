@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 export default function Dashboard() {
     const permissions = usePage().props.auth.permissions;
+    console.log(permissions);
     // useEffect(() => {
     //     if (!can('dashboard.view', permissions)) {
     //         window.location.href = '/restricted';
