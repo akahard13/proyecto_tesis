@@ -4,13 +4,14 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import {GenerateMenuList} from '@/Utils/GenerateMenuList';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
-
+    const permissions = usePage().props.auth.permissions;
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-
+    const MenuList = GenerateMenuList(permissions);
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="border-b border-gray-100 bg-white">
@@ -24,12 +25,15 @@ export default function AuthenticatedLayout({ header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
-                                >
-                                    Dashboard
-                                </NavLink>
+                                {MenuList.map(({ prefix, page_name }) => (
+                                    <NavLink
+                                        key={prefix}
+                                        href={route(prefix)} // Asegúrate de que la ruta exista con ese nombre
+                                        active={route().current(prefix)}
+                                    >
+                                        {page_name}
+                                    </NavLink>
+                                ))}
                             </div>
                         </div>
 
