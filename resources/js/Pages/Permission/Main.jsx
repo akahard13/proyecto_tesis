@@ -3,9 +3,8 @@ import { Head, usePage } from '@inertiajs/react';
 import { can } from '@/Utils/Permissions';
 import { useEffect } from 'react';
 
-export default function Dashboard({ roles, permissions_list }) {
+export default function Permissions({ roles, permissions_list }) {
     const permissions = usePage().props.auth.permissions;
-    console.log(permissions);
     // useEffect(() => {
     //     if (!can('dashboard.view', permissions)) {
     //         window.location.href = '/restricted';
@@ -40,7 +39,7 @@ export default function Dashboard({ roles, permissions_list }) {
                                             <tr key={role.id}>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm">{role.name}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                                    <a href={`/permissions/${role.id}`} className="text-blue-600 hover:underline">Editar</a>
+                                                    <a href={route('permissions.edit', role.id)} className="text-blue-600 hover:underline">Editar</a>
                                                 </td>
                                             </tr>
                                         ))}

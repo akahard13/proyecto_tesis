@@ -22,7 +22,7 @@ return new class extends Migration {
                 'deleted' => false
             ],
             [
-                'name' => 'create',
+                'name' => 'store',
                 'active' => true,
                 'deleted' => false
             ],
@@ -33,16 +33,6 @@ return new class extends Migration {
             ],
             [
                 'name' => 'delete',
-                'active' => true,
-                'deleted' => false
-            ],
-            [
-                'name' => 'edit',
-                'active' => true,
-                'deleted' => false
-            ],
-            [
-                'name' => 'store',
                 'active' => true,
                 'deleted' => false
             ]

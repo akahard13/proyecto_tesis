@@ -16,13 +16,21 @@ return new class extends Migration {
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
-
-            $table->unique(['permission_id', 'page_id', 'rol_id']);
         });
         $permissions = [
             [
                 'permission_id' => 1,
                 'page_id' => 1,
+                'rol_id' => 1
+            ],
+            [
+                'permission_id' => 1,
+                'page_id' => 2,
+                'rol_id' => 1
+            ],
+            [
+                'permission_id' => 2,
+                'page_id' => 2,
                 'rol_id' => 1
             ]
         ];

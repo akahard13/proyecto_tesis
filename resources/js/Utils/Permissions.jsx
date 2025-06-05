@@ -1,3 +1,3 @@
 export function can(permission, permissions) {
-  return permissions.includes(permission);
+  return permissions.some(p => p.permission_name === permission);
 }

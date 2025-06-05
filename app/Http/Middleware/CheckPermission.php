@@ -21,8 +21,13 @@ class CheckPermission
     public function handle(Request $request, Closure $next): Response
     {
         $excludedRouteNames = [
-            'restricted', 'profile', 'password', 'logout',
-            'login', 'register', 'verification.*',
+            'restricted',
+            'profile',
+            'password',
+            'logout',
+            'login',
+            'register',
+            'verification.*',
         ];
         if (! $request->user()) {
             return $next($request);
@@ -37,7 +42,8 @@ class CheckPermission
             }
         }
         $page = $request->path();
-        $permissionToCheck = $page . '.view';
+        $basePage = explode('/', $page)[0]; // obtiene solo lo primero antes del primer "/"
+        $permissionToCheck = $basePage . '.view';
 
         if (! $this->validatePermission($permissionToCheck, $request->user()->id)) {
             return redirect()->route('restricted');

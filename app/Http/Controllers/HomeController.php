@@ -25,28 +25,22 @@ class HomeController extends Controller
 
     public function getCalendar($year, $month, $clientId)
     {
-        // Inicio y fin del mes
         $startOfMonth = Carbon::create($year, $month, 1);
         $endOfMonth = $startOfMonth->copy()->endOfMonth();
-
-        // Obtener asistencias del cliente ese mes
         $attendances = DB::table('attendances')
             ->where('client_id', $clientId)
             ->whereBetween('date', [$startOfMonth->toDateString(), $endOfMonth->toDateString()])
-            ->pluck('date') // solo extrae fechas
-            ->map(fn($date) => Carbon::createFromFormat('Y-m-d', $date)->toDateString()) // asegura formato
+            ->pluck('date')
+            ->map(fn($date) => Carbon::createFromFormat('Y-m-d', $date)->toDateString())
             ->toArray();
-
-        // Construir arreglo del calendario
         $calendar = [];
         for ($date = $startOfMonth->copy(); $date->lte($endOfMonth); $date->addDay()) {
             $calendar[] = [
                 'date' => $date->toDateString(),
-                'day' =>$date->translatedFormat('l'), // Nombre del día (Monday, Tuesday, etc.)
+                'day' =>$date->translatedFormat('l'),
                 'attended' => in_array($date->toDateString(), $attendances)
             ];
         }
-
         return $calendar;
     }
 }

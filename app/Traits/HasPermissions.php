@@ -16,7 +16,11 @@ trait HasPermissions
             ->join('system.pages as p', 'pg.page_id', '=', 'p.id')
             ->join('system.users as u', 'pg.rol_id', '=', 'u.rol_id')
             ->where('u.id', $user_id)
+            ->where('pg.active', true)
+            ->where('p.active', true)
+            ->where('pm.active', true)
             ->selectRaw("CONCAT(p.slug, '.', pm.name) as permission_name, p.name as page_name")
+            ->orderBy('p.id', 'asc')
             ->get()
             ->toArray();
     }
@@ -28,6 +32,9 @@ trait HasPermissions
             ->join('system.pages as p', 'pg.page_id', '=', 'p.id')
             ->join('system.users as u', 'pg.rol_id', '=', 'u.rol_id')
             ->where('u.id', $user_id)
+            ->where('pg.active', true)
+            ->where('p.active', true)
+            ->where('pm.active', true)
             ->whereRaw("CONCAT(p.slug, '.', pm.name) = ?", [$permissionName])
             ->selectRaw("CONCAT(p.slug, '.', pm.name) as permission_name")
             ->pluck('permission_name')

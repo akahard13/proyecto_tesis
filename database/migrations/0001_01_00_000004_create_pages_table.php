@@ -30,7 +30,28 @@ return new class extends Migration {
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now,
-        ]];
+            ],
+            [
+                'name' => 'Permisos',
+                'slug' => 'permissions',
+                'url' => '/permissions',
+                'icon' => null,
+                'index' => 1,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now,
+            ],
+            [
+                'name' => 'Inicio',
+                'slug' => 'home',
+                'url' => '/home',
+                'icon' => null,
+                'index' => 2,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now,
+            ]
+            ];
         DB::table('system.pages')->insert($paginas);
     }
 
