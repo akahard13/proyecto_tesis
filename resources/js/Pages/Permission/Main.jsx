@@ -5,11 +5,6 @@ import { useEffect } from 'react';
 
 export default function Permissions({ roles, permissions_list }) {
     const permissions = usePage().props.auth.permissions;
-    // useEffect(() => {
-    //     if (!can('dashboard.view', permissions)) {
-    //         window.location.href = '/restricted';
-    //     }
-    // }, []);
 
     return (
         <AuthenticatedLayout
@@ -22,24 +17,29 @@ export default function Permissions({ roles, permissions_list }) {
             <Head title="Permisos" />
 
             <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
-                        <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                            {/* Tabla 1 */}
-                            <div className="w-full sm:w-1/2">
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className="bg-white p-6 shadow rounded-lg">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Tabla de Roles */}
+                            <div className="overflow-auto rounded-lg shadow">
                                 <table className="min-w-full divide-y divide-gray-200">
-                                    <thead>
+                                    <thead className="bg-gray-100">
                                         <tr>
-                                            <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Roles</th>
-                                            <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Acción</th>
+                                            <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">Roles</th>
+                                            <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="divide-y divide-gray-200">
                                         {roles && roles.map((role) => (
-                                            <tr key={role.id}>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm">{role.name}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                                    <a href={route('permissions.edit', role.id)} className="text-blue-600 hover:underline">Editar</a>
+                                            <tr key={role.id} className="hover:bg-gray-50">
+                                                <td className="px-6 py-4 text-sm text-gray-800">{role.name}</td>
+                                                <td className="px-6 py-4 text-sm">
+                                                    <a
+                                                        href={route('permissions.edit', role.id)}
+                                                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
+                                                    >
+                                                        Editar
+                                                    </a>
                                                 </td>
                                             </tr>
                                         ))}
@@ -47,22 +47,18 @@ export default function Permissions({ roles, permissions_list }) {
                                 </table>
                             </div>
 
-                            {/* Tabla 2 */}
-                            <div className="w-full sm:w-1/2 mt-2 sm:mt-4">
+                            {/* Tabla de Permisos */}
+                            <div className="overflow-auto rounded-lg shadow">
                                 <table className="min-w-full divide-y divide-gray-200">
-                                    <thead>
+                                    <thead className="bg-gray-100">
                                         <tr>
-                                            <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Permisos</th>
-                                            {/* <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Acción</th> */}
+                                            <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">Permisos</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="divide-y divide-gray-200">
                                         {permissions_list && permissions_list.map((perm) => (
-                                            <tr key={perm.id}>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm">{perm.name}</td>
-                                                {/* <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                                    <a href={`/permissions/${perm.id}`} className="text-blue-600 hover:underline">Ver</a>
-                                                </td> */}
+                                            <tr key={perm.id} className="hover:bg-gray-50">
+                                                <td className="px-6 py-4 text-sm text-gray-800">{perm.name}</td>
                                             </tr>
                                         ))}
                                     </tbody>

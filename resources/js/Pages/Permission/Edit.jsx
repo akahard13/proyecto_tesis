@@ -80,7 +80,7 @@ export default function PermissionsList({ roles, permission_list }) {
                             })}
                         </div>
 
-                        {can('permissions.edit', permissions) && (
+                        {can('permissions.store', permissions) && (
                             <button
                                 type="submit"
                                 disabled={form.processing}
