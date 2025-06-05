@@ -22,7 +22,7 @@ class CheckPermission
     {
         $excludedRouteNames = [
             'restricted',
-            'profile',
+            'profile.*',
             'password',
             'logout',
             'login',
