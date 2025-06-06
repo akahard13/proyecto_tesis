@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
     Route::get('/permissions/{id}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
     Route::post('/permissions/update', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::post('/permissions/store_permission', [PermissionController::class, 'store_permission'])->name('permissions.store_permission');
+    Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
     //Home ROUTES
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

@@ -39,4 +39,17 @@ class PermissionController extends Controller
         $this->_service->store($request->data);
         return redirect()->route('permissions.edit', $request->data[0]['rol_id'])->with('success', 'Permisos actualizados');
     }
+
+    public function create()
+    {
+        return Inertia::render('Permission/Create');
+    }
+    public function store_permission(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $this->_service->store_permission($request->name);
+        return redirect()->route('permissions')->with('success', 'Permiso creado');
+    }
 }

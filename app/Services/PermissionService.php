@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\System\Permissions;
 use App\Models\System\PermissionsGranted;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -77,15 +78,30 @@ class PermissionService
                             ->update(['active' => $checked, 'updated_at' => now()]);
                     }
                 } else {
-                    DB::table('system.permissions_granted')->insert([
-                        'page_id' => $permission['page_id'],
-                        'permission_id' => $permission['permission_id'],
-                        'rol_id' => $permission['rol_id'],
-                        'active' => $checked,
-                        'created_at' => now(),
-                    ]);
+                    $permiso=new PermissionsGranted();
+                    $permiso->page_id=$permission['page_id'];
+                    $permiso->permission_id=$permission['permission_id'];
+                    $permiso->rol_id=$permission['rol_id'];
+                    $permiso->active=$checked;
+                    $permiso->save();
+                    // DB::table('system.permissions_granted')->insert([
+                    //     'page_id' => $permission['page_id'],
+                    //     'permission_id' => $permission['permission_id'],
+                    //     'rol_id' => $permission['rol_id'],
+                    //     'active' => $checked,
+                    //     'created_at' => now(),
+                    // ]);
                 }
             }
         }
+    }
+
+    public function store_permission($permiso)
+    {
+        $permiso = new Permissions([
+            'name' => $permiso,
+            'created_at' => now(),
+        ]);
+        $permiso->save();
     }
 }
