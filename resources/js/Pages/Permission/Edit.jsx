@@ -36,7 +36,7 @@ export default function PermissionsList({ roles, permission_list }) {
             });
 
         });
-        form.post(route('permissions.store', { data: checkedPermissions }));
+        form.post(route('permissions.store', { id: roles.id, data: checkedPermissions }));
     }
 
     return (
