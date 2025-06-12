@@ -17,7 +17,7 @@ export default function CreateRole({ roles }) {
 
             <div className="py-12">
                 <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white p-6 shadow-sm sm:rounded-lg space-y-6">
+                    <div className="bg-factor-secundary p-6 shadow-sm sm:rounded-lg space-y-6">
                         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
                             <input
                                 type="text"
@@ -30,7 +30,7 @@ export default function CreateRole({ roles }) {
                             <button
                                 type="submit"
                                 disabled={form.processing}
-                                className="bg-slate-500 text-white px-4 py-2 rounded hover:bg-slate-700"
+                                className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-2 rounded"
                             >
                                 Guardar
                             </button>

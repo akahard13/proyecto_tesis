@@ -12,39 +12,39 @@ export default function JobPositions({ jobPositions }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow rounded-lg p-6">
+                    <div className="bg-factor-secundary overflow-hidden shadow rounded-lg p-6">
                         {can('job_positions.store', permissions) && (
                             <div className="flex items-center justify-between mb-6">
                                 <a
                                     href={route('job_positions.create')}
-                                    className="bg-slate-500 hover:bg-slate-700 text-white font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
+                                    className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold py-2 px-4 rounded shadow-md transition duration-150 ease-in-out"
                                 >
                                     Crear Nuevo Cargo
                                 </a>
                             </div>
                         )}
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-100">
+                        <table className="min-w-full divide-y divide-slate-500">
+                            <thead className="bg-factor-primary">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">ID</th>
-                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Nombre</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-white">ID</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-white">Nombre</th>
                                     {showActions &&
-                                        <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Acciones</th>
+                                        <th className="px-6 py-3 text-left text-sm font-medium text-white">Acciones</th>
                                     }
 
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
                                 {jobPositions.map((position) => (
-                                    <tr key={position.id} className="hover:bg-gray-50">
-                                        <td className="px-6 py-4 text-sm text-gray-800">{position.id}</td>
-                                        <td className="px-6 py-4 text-sm text-gray-800">{position.name}</td>
+                                    <tr key={position.id} className="hover:bg-slate-400 text-factor-dark hover:text-white">
+                                        <td className="px-6 py-4 text-sm">{position.id}</td>
+                                        <td className="px-6 py-4 text-sm">{position.name}</td>
                                         {showActions &&
-                                            <td className="px-6 py-4 text-sm text-gray-800 flex items-center gap-4">
+                                            <td className="px-6 py-4 text-sm text-factor-dark flex items-center gap-4">
                                                 {can('job_positions.update', permissions) && (
                                                     <a
                                                         href={route('job_positions.edit', position.id)}
-                                                        className="bg-slate-500 text-white px-4 py-1.5 rounded hover:bg-slate-700 transition"
+                                                        className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-1.5 rounded transition"
                                                     >
                                                         Editar
                                                     </a>
@@ -52,7 +52,7 @@ export default function JobPositions({ jobPositions }) {
                                                 {can('job_positions.delete', permissions) && (
                                                     <a
                                                         href={route('job_positions.edit', position.id)}
-                                                        className="bg-red-500 text-white px-4 py-1.5 rounded hover:bg-red-700 transition"
+                                                        className="bg-red-500 text-white px-4 py-1.5 rounded font-semibold hover:bg-red-700 transition"
                                                     >
                                                         Eliminar
                                                     </a>

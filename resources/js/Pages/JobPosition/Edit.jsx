@@ -17,10 +17,10 @@ export default function Edit({ jobPosition }) {
 
             <div className="py-12">
                 <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white shadow-sm rounded-lg p-6">
+                    <div className="bg-factor-secundary shadow-sm rounded-lg p-6">
                         <form onSubmit={handleSubmit}>
                             <div className="mb-4">
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="name" className="block text-sm text-factor-dark font-semibold">
                                     Nombre del Cargo
                                 </label>
                                 <input
@@ -39,7 +39,7 @@ export default function Edit({ jobPosition }) {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded shadow transition"
+                                    className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-6 py-2 rounded shadow transition"
                                 >
                                     Guardar Cambios
                                 </button>

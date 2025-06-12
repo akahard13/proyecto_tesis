@@ -13,7 +13,7 @@ export default function AuthenticatedLayout({ header, children }) {
     const MenuList = GenerateMenuList(permissions);
 
     return (
-        <div className="min-h-screen bg-slate-600">
+        <div className="min-h-screen bg-factor-primary">
             {/* Navbar Superior */}
             <nav className="bg-gradient-to-r from-factor-dark to-slate-700 shadow-lg">
                 <div className="mx-auto py-4 max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -22,7 +22,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
                                 <Link href="/">
-                                    <ApplicationLogo className="h-10 w-auto text-white" />
+                                    <ApplicationLogo className="w-24 h-auto text-white" />
                                 </Link>
                             </div>
                             <div className="hidden md:block">
@@ -46,9 +46,9 @@ export default function AuthenticatedLayout({ header, children }) {
                             <div className="ml-4 flex items-center md:ml-6">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <button className="flex items-center space-x-2 max-w-xs rounded-full bg-slate-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-factor-yellow p-1">
+                                        <button className="flex items-center space-x-2 max-w-xs rounded-full bg-slate-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-factor-yellow-500 p-1">
                                             <span className="sr-only">Open user menu</span>
-                                            <div className="h-8 w-8 rounded-full bg-factor-yellow flex items-center justify-center text-factor-dark font-bold">
+                                            <div className="h-8 w-8 rounded-full bg-factor-yellow-500 flex items-center justify-center text-factor-dark font-bold">
                                                 {user.username.charAt(0).toUpperCase()}
                                             </div>
                                             <span className="text-white font-medium">{user.username}</span>
@@ -61,7 +61,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     <Dropdown.Content className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <Dropdown.Link
                                             href={route('profile.edit')}
-                                            className="block px-4 py-2 text-sm text-factor-light hover:border-2 hover:border-factor-yellow transition duration-150"
+                                            className="block px-4 py-2 text-sm text-white hover:border-2 hover:border-factor-yellow-500 transition duration-150"
                                         >
                                             Perfil
                                         </Dropdown.Link>
@@ -69,7 +69,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                             href={route('logout')}
                                             method="post"
                                             as="button"
-                                            className="block px-4 py-2 text-sm text-factor-light hover:border-2 hover:border-factor-yellow transition duration-150"
+                                            className="block px-4 py-2 text-sm text-white hover:border-2 hover:border-factor-yellow-500 transition duration-150"
                                         >
                                             Cerrar Sesión
                                         </Dropdown.Link>
@@ -115,7 +115,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     <div className="pt-4 pb-3 border-t border-indigo-700">
                         <div className="flex items-center px-5">
                             <div className="flex-shrink-0">
-                                <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-indigo-600 font-bold">
+                                <div className="h-10 w-10 rounded-full bg-factor-secundary flex items-center justify-center text-indigo-600 font-bold">
                                     {user.username.charAt(0).toUpperCase()}
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
             {/* Header */}
             {/* {header && (
-                <header className="bg-white shadow">
+                <header className="bg-factor-secundary shadow">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         <h1 className="text-2xl font-bold text-gray-900">{header}</h1>
                     </div>

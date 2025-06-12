@@ -3,8 +3,7 @@ export default function ApplicationLogo(props) {
         <img
             {...props}
             src="/logo.png" // Asegúrate de que el logo esté en /public/logo.png
-            alt="Factor Gym Logo"
-            className="w-24 h-auto" // puedes ajustar tamaño aquí
+            alt="Factor Gym Logo" // puedes ajustar tamaño aquí
         />
     );
 }

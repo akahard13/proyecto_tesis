@@ -14,8 +14,8 @@ export default function Home({calendario}) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg"></div>
-        <div className="grid grid-cols-7 gap-2 text-center p-4 bg-white rounded shadow">
+                    <div className="overflow-hidden bg-factor-secundary shadow-sm sm:rounded-lg"></div>
+        <div className="grid grid-cols-7 gap-2 text-center p-4 bg-factor-secundary rounded shadow">
             {calendario.map((dia) => (
                 <div
                     key={dia.date}

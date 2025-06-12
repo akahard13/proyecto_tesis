@@ -14,7 +14,7 @@ export default function Restriction() {
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                    <div className="overflow-hidden bg-factor-secundary shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 text-center text-lg">
                             🚫 No cuentas con permisos para acceder a esta página.
                         </div>

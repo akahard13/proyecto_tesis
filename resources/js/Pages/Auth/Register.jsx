@@ -49,7 +49,7 @@ export default function Register({ roles }) {
                         id="rol_id"
                         name="rol_id"
                         value={data.rol_id}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full rounded-lg border-none"
                         onChange={(e) => setData('rol_id', e.target.value)}
                         required
                     >

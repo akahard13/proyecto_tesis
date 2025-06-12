@@ -50,7 +50,7 @@ export default function PermissionsList({ roles, permission_list }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form onSubmit={submit} className="bg-white p-6 shadow-sm sm:rounded-lg space-y-6">
+                    <form onSubmit={submit} className="bg-factor-secundary p-6 shadow-sm sm:rounded-lg space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {permission_list.map((page) => {
                                 const pageKey = `page_${page.page_id}`;
@@ -84,7 +84,7 @@ export default function PermissionsList({ roles, permission_list }) {
                             <button
                                 type="submit"
                                 disabled={form.processing}
-                                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mt-4"
+                                className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-2 rounded"
                             >
                                 Guardar permisos
                             </button>

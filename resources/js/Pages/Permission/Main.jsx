@@ -18,12 +18,12 @@ export default function Permissions({ roles, permissions_list }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white p-6 shadow rounded-lg">
+                    <div className="bg-factor-secundary p-6 shadow rounded-lg">
                         {can('permissions.store', permissions) && (
                             <div className="flex items-center justify-between mb-6">
                                 <a
                                     href={route('permissions.create')}
-                                    className="bg-slate-500 hover:bg-slate-700 text-white font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
+                                    className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
                                 >
                                     Crear Nuevo Permiso
                                 </a>
@@ -33,20 +33,20 @@ export default function Permissions({ roles, permissions_list }) {
                             {/* Tabla de Roles */}
                             <div className="overflow-auto rounded-lg shadow">
                                 <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-100">
+                                    <thead className="bg-factor-primary">
                                         <tr>
-                                            <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">Roles</th>
-                                            <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">Acción</th>
+                                            <th className="text-left px-6 py-3 text-sm font-semibold text-white">Roles</th>
+                                            <th className="text-left px-6 py-3 text-sm font-semibold text-white">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         {roles && roles.map((role) => (
-                                            <tr key={role.id} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 text-sm text-gray-800">{role.name}</td>
+                                            <tr key={role.id} className="hover:bg-slate-400 text-factor-dark hover:text-white">
+                                                <td className="px-6 py-4 text-sm">{role.name}</td>
                                                 <td className="px-6 py-4 text-sm">
                                                     <a
                                                         href={route('permissions.edit', role.id)}
-                                                        className="bg-slate-500 hover:bg-slate-700 text-white font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
+                                                        className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
                                                     >
                                                         Editar
                                                     </a>
@@ -60,15 +60,15 @@ export default function Permissions({ roles, permissions_list }) {
                             {/* Tabla de Permisos */}
                             <div className="overflow-auto rounded-lg shadow">
                                 <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-100">
+                                    <thead className="bg-factor-primary">
                                         <tr>
-                                            <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">Permisos</th>
+                                            <th className="text-left px-6 py-3 text-sm font-semibold text-white">Permisos</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         {permissions_list && permissions_list.map((perm) => (
-                                            <tr key={perm.id} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 text-sm text-gray-800">{perm.name}</td>
+                                            <tr key={perm.id} className="hover:bg-slate-400 text-factor-dark hover:text-white">
+                                                <td className="px-6 py-4 text-sm ">{perm.name}</td>
                                             </tr>
                                         ))}
                                     </tbody>

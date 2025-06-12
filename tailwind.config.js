@@ -23,8 +23,20 @@ export default {
                     light: '#F5F5F5',    // fondo claro
                     accent: '#F77F00',   // acento naranja
                     white: '#FFFFFF',    // blanco puro
-                    yellow: '#F6CB3F',
-                    fondo: '#181818',
+                    yellow: {
+                        100: '#FFF8E1',
+                        200: '#FDECB2',
+                        300: '#FCD972',
+                        400: '#FBD249',
+                        500: '#F6CB3F', // base
+                        600: '#D5AC2F',
+                        700: '#B88E23',
+                        800: '#99731D',
+                        900: '#7C5B17',
+                        950: '#4A350C',
+                    },
+                    primary: '#334155',
+                    secundary: '#cbd5e1',
                 },
             },
         },
