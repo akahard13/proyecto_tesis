@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/job_positions', [JobPositionController::class, 'index'])->name('job_positions');
     Route::get('/job_positions/create', [JobPositionController::class, 'create'])->name('job_positions.create');
     Route::get('/job_positions/{id}/edit', [JobPositionController::class, 'edit'])->name('job_positions.edit');
-    Route::put('/job_positions/update', [JobPositionController::class, 'update'])->name('job_positions.update');
+    Route::put('/job_positions/{id}/update', [JobPositionController::class, 'update'])->name('job_positions.update');
     Route::post('/job_positions/store', [JobPositionController::class, 'store'])->name('job_positions.store');
     //Permissions ROUTES
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');

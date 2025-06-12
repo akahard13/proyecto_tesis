@@ -17,7 +17,7 @@ class JobPositionController extends Controller
     }
     public function index()
     {
-        $jobPositions = JobPositions::where(['active' => true, 'deleted' => false])->get();
+        $jobPositions = JobPositions::where(['active' => true, 'deleted' => false])->orderBy('id', 'asc')->get();
         return Inertia::render('JobPosition/Main', [
             'jobPositions' => $jobPositions
         ]);
