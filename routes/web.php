@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Catalaogs\JobPositionController;
+use App\Http\Controllers\Catalogs\JobPositionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;

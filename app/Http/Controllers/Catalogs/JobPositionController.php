@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Catalaogs;
+namespace App\Http\Controllers\Catalogs;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catalogs\JobPositions;
