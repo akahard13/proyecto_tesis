@@ -9,7 +9,7 @@ export default function CreateJobPosition() {
     const permissions = usePage().props.auth.permissions;
     const handleSubmit = (e) => {
         e.preventDefault();
-        form.post(route('job_positions.store_permission'), {
+        form.post(route('job_positions.store'), {
             onSuccess: () => form.reset(),
         });
     };
