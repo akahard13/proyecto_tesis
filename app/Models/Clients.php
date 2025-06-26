@@ -21,8 +21,8 @@ class Clients extends Model
     ];
 
     protected $casts = [
-        'birthday' => 'date',
-        'inscription_day' => 'date'
+        'birthday' => 'date:d-m-Y',
+        'inscription_day' => 'date:d-m-Y'
     ];
 
     public function gender()

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Catalogs\JobPositionController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
@@ -36,11 +37,17 @@ Route::middleware(['auth'])->group(function () {
     //Permissions ROUTES
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
     Route::get('/permissions/{id}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
-    Route::post('/permissions/{id}/update', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::put('/permissions/{id}/update', [PermissionController::class, 'store'])->name('permissions.store');
     Route::post('/permissions/store_permission', [PermissionController::class, 'store_permission'])->name('permissions.store_permission');
     Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
     //Home ROUTES
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    //CLIENTS ROUTES
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    //Route::put('/clients/{id}/update', [ClientController::class, 'update'])->name('permissions.store');
+    //Route::put('/clients/store', [ClientController::class, 'store'])->name('permissions.store');
+    Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store');
 });
 
 require __DIR__ . '/auth.php';
