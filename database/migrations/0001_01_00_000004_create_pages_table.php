@@ -50,8 +50,28 @@ return new class extends Migration {
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now,
+            ],
+            [
+                'name' => 'Clientes',
+                'slug' => 'clients',
+                'url' => '/clients',
+                'icon' => null,
+                'index' => 3,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now,
+            ],
+            [
+                'name' => 'Cargos',
+                'slug' => 'job_positions',
+                'url' => '/job_positions',
+                'icon' => null,
+                'index' => 4,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now
             ]
-            ];
+        ];
         DB::table('system.pages')->insert($paginas);
     }
 
