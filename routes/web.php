@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
     //Home ROUTES
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home/calendar/{year}/{month}', [HomeController::class, 'changeCalendar'])->name('calendar');
     //CLIENTS ROUTES
     Route::get('/clients', [ClientController::class, 'index'])->name('clients');
     Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');

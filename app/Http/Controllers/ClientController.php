@@ -10,6 +10,7 @@ use Inertia\Inertia;
 
 class ClientController extends Controller
 {
+    protected $rol=2;
     public function __construct() {}
 
     public function index()
@@ -45,15 +46,16 @@ class ClientController extends Controller
             'cellphone' => 'required|numeric'
         ]);
         try {
-            $this->insertInto('clients', [
-                'name' => $request->name,
-                'lastname' => $request->lastname,
+            $cliente = $this->insertInto('clients', [
+                'name' => ucfirst($request->name),
+                'lastname' => ucfirst($request->lastname),
                 'birthday' => $request->birthday,
                 'inscription_day' => $request->inscription_day,
                 'gender_id' => $request->gender_id,
                 'code' => $request->code,
                 'cellphone' => $request->cellphone
-            ]);
+            ], true);
+            $this->createUser($cliente, 'client', $request->name, $request->lastname, $request->email, $this->rol);
             return redirect()->route('clients',)->with('success', 'Cliente creado correctamente.');
         } catch (Exception $e) {
             return $this->respuestaJson(['error' => $e->getMessage()], 500);
