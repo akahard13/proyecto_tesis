@@ -17,8 +17,7 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $user = Auth::getUser();
-        $calendar = $this->getCalendar(now()->year, now()->month, $user->reference_id);
+        $calendar = $this->getCalendar(now()->year, now()->month);
         $anyos = $this->getYears();
         $meses = $this->getMonths();
         return Inertia::render('public/Home', [
@@ -31,20 +30,21 @@ class HomeController extends Controller
     }
     public function changeCalendar(Request $request)
     {
-        $calendar = $this->getCalendar($request->year, $request->month, Auth::user()->reference_id);
-        $this->respuestaJson(['calendario' => $calendar], 200);
+        $calendar = $this->getCalendar($request->year, $request->month);
+        return response()->json($calendar, 200);
     }
-    public function getCalendar($year, $month, $clientId)
+    public function getCalendar($year, $month)
     {
+        $user = Auth::getUser();
         $startOfMonth = Carbon::create($year, $month, 1);
         $endOfMonth = $startOfMonth->copy()->endOfMonth();
 
-        $startDate = $startOfMonth->copy()->startOfWeek(1); //DOMINGO 0
+        $startDate = $startOfMonth->copy()->startOfWeek(0); //DOMINGO 0
 
         $endDate = $endOfMonth->copy()->endOfWeek(6); //SABADO 6
 
         $attendances = DB::table('attendances')
-            ->where('client_id', $clientId)
+            ->where('client_id', $user->reference_id)
             ->whereBetween('date', [$startDate->toDateString(), $endDate->toDateString()])
             ->pluck('date')
             ->map(fn($date) => Carbon::createFromFormat('Y-m-d', $date)->toDateString())
@@ -58,7 +58,6 @@ class HomeController extends Controller
                 'current_month' => $date->month === $startOfMonth->month,
             ];
         }
-        
         return $calendar;
     }
     private function getYears()

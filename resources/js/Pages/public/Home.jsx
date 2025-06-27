@@ -6,32 +6,23 @@ export default function Home({ calendario, months, years, current_year, current_
     const [calendar, setCalendar] = useState(calendario);
     const [selectedMonth, setSelectedMonth] = useState(current_month);
     const [selectedYear, setSelectedYear] = useState(current_year);
-
+    const diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
     const handleChange = async (e) => {
         const { name, value } = e.target;
-
-        // Actualizar el estado correspondiente
-        if (name === 'month') {
-            setSelectedMonth(value);
-        } else if (name === 'year') {
-            setSelectedYear(value);
-        }
-
+        const newMonth = name === 'month' ? value : selectedMonth;
+        const newYear = name === 'year' ? value : selectedYear;
+        if (name === 'month') setSelectedMonth(value);
+        if (name === 'year') setSelectedYear(value);
         try {
-            const response = await fetch(`/home/calendar/${selectedYear}/${selectedMonth}`);
-
+            const response = await fetch(`/home/calendar/${newYear}/${newMonth}`);
             if (!response.ok) {
                 throw new Error('Error al obtener el calendario');
             }
-
-            const text = await response.text(); // Primero obtener como texto
-            const data = text ? JSON.parse(text) : {}; // Parsear solo si hay contenido
-            console.log(text, data)
-            if (!data.calendario) {
-                throw new Error('Formato de respuesta inválido');
+            const data = await response.json();
+            if (!data) {
+                throw new Error('Datos del calendario no recibidos');
             }
-
-            setCalendar(data.calendario);
+            setCalendar(data);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -77,7 +68,22 @@ export default function Home({ calendario, months, years, current_year, current_
             </div>
 
             <div className="py-12">
+                <div className="mb-8 rounded-lg text-justify bg-slate-400 p-4 shadow-lg">
+                    <h1 className="text-lg font-bold">Nota Importante:</h1>
+                    <ol className="list-disc list-inside">
+                        <li>Los días marcados en verde son los días en que usted registró asistencia.</li>
+                        <li>Para marcar asistencias debe ingresar su código en la pantalla que se encuentra en la entrada del gimnasio.</li>
+                    </ol>
+                </div>
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-7 gap-2 text-center mb-2 font-bold md:hidden">
+                        {diasSemana.map((dia) => (
+                            <div key={dia} className="p-2 capitalize">
+                                {dia.substring(0, 3)} {/* Muestra solo las primeras 3 letras */}
+                            </div>
+                        ))}
+                    </div>
+
                     <div className="grid grid-cols-7 gap-2 text-center p-4 bg-factor-secundary rounded shadow">
                         {calendar.map((dia) => {
                             const diaMes = dia.date.split('-')[2];

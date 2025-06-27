@@ -2,7 +2,9 @@ import { Head, usePage } from '@inertiajs/react';
 import { can } from '@/Utils/Permissions';
 import { useEffect, useState } from 'react';
 import Wrap from '@/Components/Wrap';
-
+import { FaRegTrashAlt } from "react-icons/fa";
+import { MdOutlineEdit } from "react-icons/md";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 export default function clients({ clients }) {
     const permissions = usePage().props.auth.permissions;
     const { flash } = usePage().props;
@@ -62,21 +64,29 @@ export default function clients({ clients }) {
                                 <td className="px-6 py-4 text-sm">{cli.inscription_day}</td>
                                 <td className="px-6 py-4 text-sm">{cli.cellphone}</td>
 
-                                <td className="px-6 py-4 text-sm text-factor-dark flex items-center gap-4">
+                                <td className="px-6 py-4 text-sm text-factor-dark flex items-center justify-between gap-2">
                                     {can('clients.update', permissions) && (
                                         <a
                                             href={route('job_positions.edit', cli.id)}
-                                            className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-1.5 rounded transition"
+                                            className="text-factor-primary"
                                         >
-                                            Editar
+                                            <MdOutlineEdit className='w-8 h-8' title='Editar'/>
                                         </a>
                                     )}
                                     {can('clients.delete', permissions) && (
                                         <a
                                             href={route('job_positions.edit', cli.id)}
-                                            className="bg-red-500 text-white px-4 py-1.5 rounded font-semibold hover:bg-red-700 transition"
+                                            className="text-factor-primary"
                                         >
-                                            Eliminar
+                                            <FaRegTrashAlt className='w-7 h-7' title='Eliminar' />
+                                        </a>
+                                    )}
+                                    {can('clients.delete', permissions) && (
+                                        <a
+                                            href={route('job_positions.edit', cli.id)}
+                                            className="text-factor-primary"
+                                        >
+                                            <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar'/>
                                         </a>
                                     )}
                                 </td>
