@@ -2,11 +2,14 @@ import Wrap from '@/Components/Wrap';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { can } from '@/Utils/Permissions';
 import { Head, usePage } from '@inertiajs/react';
+import { useState } from 'react';
 
 export default function JobPositions({ jobPositions }) {
     const permissions = usePage().props.auth.permissions;
+    console.log(permissions)
     const showActions = can('job_positions.update', permissions) || can('job_positions.delete', permissions);
-
+    const { flash } = usePage().props;
+    const [showSuccess, setShowSuccess] = useState(!!flash.success);
     return (
         <Wrap header="Cargos">
 
@@ -18,6 +21,11 @@ export default function JobPositions({ jobPositions }) {
                     >
                         Crear Nuevo Cargo
                     </a>
+                </div>
+            )}
+            {showSuccess && (
+                <div className="bg-green-100 text-green-800 text-sm font-semibold py-2 px-4 mb-4 rounded">
+                    {flash.success}
                 </div>
             )}
             <table className="min-w-full divide-y divide-slate-500">
