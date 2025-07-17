@@ -67,7 +67,7 @@ export default function clients({ clients }) {
                                 <td className="px-6 py-4 text-sm text-factor-dark flex items-center justify-between gap-2">
                                     {can('clients.update', permissions) && (
                                         <a
-                                            href={route('job_positions.edit', cli.id)}
+                                            href={route('clients.edit', cli.id)}
                                             className="text-factor-primary"
                                         >
                                             <MdOutlineEdit className='w-8 h-8' title='Editar'/>
@@ -75,7 +75,7 @@ export default function clients({ clients }) {
                                     )}
                                     {can('clients.delete', permissions) && (
                                         <a
-                                            href={route('job_positions.edit', cli.id)}
+                                            href={route('clients.edit', cli.id)}
                                             className="text-factor-primary"
                                         >
                                             <FaRegTrashAlt className='w-7 h-7' title='Eliminar' />
@@ -83,7 +83,7 @@ export default function clients({ clients }) {
                                     )}
                                     {can('clients.delete', permissions) && (
                                         <a
-                                            href={route('job_positions.edit', cli.id)}
+                                            href={route('clients.edit', cli.id)}
                                             className="text-factor-primary"
                                         >
                                             <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar'/>
