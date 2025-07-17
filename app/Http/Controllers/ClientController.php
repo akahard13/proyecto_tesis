@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalogs\Gender;
 use App\Models\Clients;
+use App\Services\ClientServices;
 use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,13 +12,16 @@ use Inertia\Inertia;
 class ClientController extends Controller
 {
     protected $rol=2;
-    public function __construct() {}
-
+    private $_service;
+    public function __construct()
+    {
+        $this->_service = new ClientServices();
+    }
     public function index()
     {
         $clients = Clients::with('gender')->get();
-        //$this->formatCustomDate($clients, ['birthday', 'inscription_day']);
-        //dd($clients);
+        $clientes=$this->_service->getClients();
+        dd($clientes);
         return Inertia::render('Clients/Main', [
             'clients' => $clients
         ]);
