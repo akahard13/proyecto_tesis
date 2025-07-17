@@ -15,7 +15,7 @@ class ClientServices
             ->leftJoin('system.users as u', function ($join) {
                 $join->on('u.reference_id', '=', 'c.id')
                     ->where('u.table_reference', '=', 'client');
-            })->select('c.*', 'gen.name as gender', DB::raw('case when u.id is not null then true else false end as is_active'))->get();
+            })->select('c.*', 'gen.name as gender', DB::raw('case when u.id is not null and u.deleted=false and u.active=true then true else false end as is_active'))->get();
     }
 
     public function update($request, $id)

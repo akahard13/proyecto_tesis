@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import { can } from '@/Utils/Permissions';
 import { useEffect, useState } from 'react';
 import Wrap from '@/Components/Wrap';
@@ -7,6 +7,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import ConfirmModal from '@/Components/ConfirmModal';
 export default function clients({ clients }) {
+    const { delete: destroy } = useForm();
     const permissions = usePage().props.auth.permissions;
     const { flash } = usePage().props;
     const [showSuccess, setShowSuccess] = useState(!!flash.success);
@@ -17,7 +18,7 @@ export default function clients({ clients }) {
         setShowModal(true);
     };
     const handleConfirm = () => {
-        destroy(route('clients.destroy', selectedId));
+        destroy (route('clients.delete', selectedId));
         setShowModal(false);
     };
     useEffect(() => {
@@ -69,7 +70,7 @@ export default function clients({ clients }) {
                                 <td className="px-6 py-4 text-sm">{cli.name}</td>
                                 <td className="px-6 py-4 text-sm">{cli.lastname}</td>
                                 <td className="px-6 py-4 text-sm">{cli.birthday}</td>
-                                <td className="px-6 py-4 text-sm">{cli.gender.name}</td>
+                                <td className="px-6 py-4 text-sm">{cli.gender}</td>
                                 <td className="px-6 py-4 text-sm">{cli.code}</td>
                                 <td className="px-6 py-4 text-sm">{cli.inscription_day}</td>
                                 <td className="px-6 py-4 text-sm">{cli.cellphone}</td>

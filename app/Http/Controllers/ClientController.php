@@ -19,8 +19,8 @@ class ClientController extends Controller
     }
     public function index()
     {
-        $clients = Clients::with('gender')->get();
-        $clientes = $this->_service->getClients();
+        //$clients = Clients::with('gender')->where('active', true)->where('deleted', false)->orderBy('id', 'asc')->get();
+        $clients = $this->_service->getClients();
         return Inertia::render('Clients/Main', [
             'clients' => $clients
         ]);
@@ -88,6 +88,18 @@ class ClientController extends Controller
         try {
             $this->_service->update($request, $id);
             return redirect()->route('clients',)->with('success', 'Cliente actualizado correctamente.');
+        } catch (Exception $e) {
+            return $this->respuestaJson(['error' => $e->getMessage()], 500);
+        }
+    }
+    public function delete($id)
+    {
+        try {
+            $client = Clients::find($id);
+            $client->active = false;
+            $client->deleted = true;
+            $client->save();
+            return redirect()->route('clients',)->with('success', 'Cliente eliminado correctamente.');
         } catch (Exception $e) {
             return $this->respuestaJson(['error' => $e->getMessage()], 500);
         }
