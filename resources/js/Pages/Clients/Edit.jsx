@@ -128,7 +128,7 @@ export default function Edit({ client, genders }) {
                     </div>
                 </div>
                 {
-                    can('job_positions.store', permissions) && (
+                    can('clients.update', permissions) && (
                         <button
                             type="submit"
                             disabled={processing}
