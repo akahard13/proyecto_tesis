@@ -104,4 +104,17 @@ class ClientController extends Controller
             return $this->respuestaJson(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function toggleLinkUser($id)
+    {
+        try {
+            $user = $this->_service->toggleLinkUser($id);
+            if ($user->active)
+                return redirect()->route('clients',)->with('success', 'Usuario activado correctamente para el cliente ' . $user->name . ' ' . $user->lastname);
+            else
+                return redirect()->route('clients',)->with('success', 'Usuario desactivado correctamente para el cliente ' . $user->name . ' ' . $user->lastname);
+        } catch (Exception $e) {
+            return $this->respuestaJson(['error' => $e->getMessage()], 500);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 // ConfirmModal.js
-const ConfirmModal = ({ show, onClose, onConfirm, title }) => {
+const ConfirmModal = ({ show, onClose, onConfirm, title, action }) => {
     if (!show) return null;
 
     return (
@@ -19,7 +19,7 @@ const ConfirmModal = ({ show, onClose, onConfirm, title }) => {
                             onClick={onConfirm}
                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
                         >
-                            Eliminar
+                            {action}
                         </button>
                         <button
                             onClick={onClose}

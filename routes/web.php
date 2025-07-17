@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/clients/{id}/update', [ClientController::class, 'update'])->name('clients.update');
     Route::delete('/clients/{id}/delete', [ClientController::class, 'delete'])->name('clients.delete');
     Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store');
+    Route::put('/clients/{id}/toggle_user', [ClientController::class, 'toggleLinkUser'])->name('clients.toggle_user');
 });
 
 require __DIR__ . '/auth.php';

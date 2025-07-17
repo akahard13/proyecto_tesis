@@ -33,4 +33,13 @@ class ClientServices
         $client->cellphone = $request->cellphone;
         $client->save();
     }
+
+    public function toggleLinkUser($id){
+        $user= User::where('table_reference', 'client')->where('reference_id',$id)->first();
+        $user->active=!$user->active;
+        $user->deleted=!$user->deleted;
+        $user->save();
+        return $user;
+    }
 }
+

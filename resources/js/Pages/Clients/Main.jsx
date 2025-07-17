@@ -4,21 +4,47 @@ import { useEffect, useState } from 'react';
 import Wrap from '@/Components/Wrap';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiH1, RiMoneyDollarCircleLine } from "react-icons/ri";
 import ConfirmModal from '@/Components/ConfirmModal';
+import { AiOutlineTeam } from "react-icons/ai";
+import { GoPerson } from "react-icons/go";
 export default function clients({ clients }) {
-    const { delete: destroy } = useForm();
+    const { delete: destroy, put } = useForm();
     const permissions = usePage().props.auth.permissions;
     const { flash } = usePage().props;
     const [showSuccess, setShowSuccess] = useState(!!flash.success);
     const [showModal, setShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
+    const [modalTitle, setModalTitle] = useState('');
+    const [modalAction, setModalAction] = useState('delete');
+const [action, setAction] = useState('Eliminar');
     const handleDeleteClick = (id) => {
         setSelectedId(id);
+        setModalAction('delete');
+        setAction('Eliminar');
+        setModalTitle('¿Estás seguro de que quieres eliminar este cliente?');
+        setShowModal(true);
+    };
+
+    const handleToggleClick = (id, isActive) => {
+        setSelectedId(id);
+        setModalAction('toggle');
+        setAction(isActive
+            ? 'Desactivar'
+            : 'Activar'
+        );
+        setModalTitle(isActive
+            ? '¿Estás seguro de que quieres desactivar este usuario?'
+            : '¿Estás seguro de que quieres activar este usuario?'
+        );
         setShowModal(true);
     };
     const handleConfirm = () => {
-        destroy (route('clients.delete', selectedId));
+        if (modalAction === 'delete') {
+            destroy(route('clients.delete', selectedId));
+        } else if (modalAction === 'toggle') {
+            put(route('clients.toggle_user', selectedId));
+        }
         setShowModal(false);
     };
     useEffect(() => {
@@ -100,6 +126,17 @@ export default function clients({ clients }) {
                                             <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar' />
                                         </a>
                                     )}
+                                    {can('clients.update', permissions) && (
+                                        <button
+                                            onClick={() => handleToggleClick(cli.id, cli.is_active)}
+                                            className="text-factor-primary font-bold py-1 px-2 rounded mr-2"
+                                        >
+                                            {cli.is_active
+                                                ? <AiOutlineTeam className='w-8 h-8' title='Desactivar Usuario' />
+                                                : <GoPerson className='w-8 h-8' title='Activar Usuario' />}
+                                        </button>
+                                    )}
+
                                 </td>
                             </tr>
                         ))}
@@ -108,10 +145,12 @@ export default function clients({ clients }) {
             </div>
             <ConfirmModal
                 show={showModal}
-                title="¿Estás seguro de que quieres eliminar este cliente?"
+                title={modalTitle}
+                action={action}
                 onClose={() => setShowModal(false)}
                 onConfirm={handleConfirm}
             />
+
         </Wrap>
     );
 }
