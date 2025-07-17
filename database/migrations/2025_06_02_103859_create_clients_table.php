@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->date('inscription_day')->nullable();
             $table->string('cellphone')->nullable();
+            $table->boolean('active')->default(true);
+            $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
     }

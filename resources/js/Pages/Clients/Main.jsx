@@ -5,11 +5,21 @@ import Wrap from '@/Components/Wrap';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import ConfirmModal from '@/Components/ConfirmModal';
 export default function clients({ clients }) {
     const permissions = usePage().props.auth.permissions;
     const { flash } = usePage().props;
-     const [showSuccess, setShowSuccess] = useState(!!flash.success);
-
+    const [showSuccess, setShowSuccess] = useState(!!flash.success);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
+    const handleDeleteClick = (id) => {
+        setSelectedId(id);
+        setShowModal(true);
+    };
+    const handleConfirm = () => {
+        destroy(route('clients.destroy', selectedId));
+        setShowModal(false);
+    };
     useEffect(() => {
         if (flash.success) {
             const timer = setTimeout(() => {
@@ -70,23 +80,23 @@ export default function clients({ clients }) {
                                             href={route('clients.edit', cli.id)}
                                             className="text-factor-primary"
                                         >
-                                            <MdOutlineEdit className='w-8 h-8' title='Editar'/>
+                                            <MdOutlineEdit className='w-8 h-8' title='Editar' />
                                         </a>
+                                    )}
+                                    {can('clients.delete', permissions) && (
+                                        <button
+                                            onClick={() => handleDeleteClick(cli.id)}
+                                            className="text-factor-primary hover:text-red-700 font-bold py-1 px-2 rounded mr-2"
+                                        >
+                                            <FaRegTrashAlt className='w-8 h-8' title='Eliminar' />
+                                        </button>
                                     )}
                                     {can('clients.delete', permissions) && (
                                         <a
                                             href={route('clients.edit', cli.id)}
                                             className="text-factor-primary"
                                         >
-                                            <FaRegTrashAlt className='w-7 h-7' title='Eliminar' />
-                                        </a>
-                                    )}
-                                    {can('clients.delete', permissions) && (
-                                        <a
-                                            href={route('clients.edit', cli.id)}
-                                            className="text-factor-primary"
-                                        >
-                                            <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar'/>
+                                            <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar' />
                                         </a>
                                     )}
                                 </td>
@@ -95,6 +105,12 @@ export default function clients({ clients }) {
                     </tbody>
                 </table>
             </div>
+            <ConfirmModal
+                show={showModal}
+                title="¿Estás seguro de que quieres eliminar este cliente?"
+                onClose={() => setShowModal(false)}
+                onConfirm={handleConfirm}
+            />
         </Wrap>
     );
 }
