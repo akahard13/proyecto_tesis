@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('hiring_day')->nullable();
             $table->decimal('salary', 10, 2)->nullable();
             $table->string('cellphone')->nullable();
+            $table->boolean('active')->default(true);
+            $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Catalogs\JobPositionController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
@@ -51,6 +52,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/clients/{id}/delete', [ClientController::class, 'delete'])->name('clients.delete');
     Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store');
     Route::put('/clients/{id}/toggle_user', [ClientController::class, 'toggleLinkUser'])->name('clients.toggle_user');
+    // EMPLOYEES ROUTES
+    Route::get('/employees', [EmployeesController::class, 'index'])->name('employees');
+    Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
+    Route::post('/employees', [EmployeesController::class, 'store'])->name('employees.store');
+    Route::get('/employees/{employee}/edit', [EmployeesController::class, 'edit'])->name('employees.edit');
+    Route::put('/employees/{employee}', [EmployeesController::class, 'update'])->name('employees.update');
+    Route::delete('/employees/{employee}', [EmployeesController::class, 'delete'])->name('employees.delete');
 });
 
 require __DIR__ . '/auth.php';
