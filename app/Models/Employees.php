@@ -23,8 +23,8 @@ class Employees extends Model
     ];
 
     protected $casts = [
-        'birthday' => 'date',
-        'hiring_day' => 'date',
+        'birthday' => 'date:Y-m-d',
+        'hiring_day' => 'date:Y-m-d',
         'salary' => 'decimal:2'
     ];
 
