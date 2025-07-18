@@ -1,10 +1,10 @@
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import { can } from '@/Utils/Permissions';
 import { useEffect, useState } from 'react';
 import Wrap from '@/Components/Wrap';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
-import { RiH1, RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import ConfirmModal from '@/Components/ConfirmModal';
 import { AiOutlineTeam } from "react-icons/ai";
 import { GoPerson } from "react-icons/go";
