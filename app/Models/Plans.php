@@ -8,15 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Plans extends Model
 {
+    protected $table = 'catalogs.plans';
     protected $fillable = [
-        'frequency_id',
-        'price',
+        'name',
         'active',
         'deleted',
     ];
-
-    public function frequency(): BelongsTo
-    {
-        return $this->belongsTo(Frequencies::class, 'frequency_id');
-    }
 }

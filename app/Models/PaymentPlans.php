@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PaymentPlanS extends Model
+class PaymentPlans extends Model
 {
     protected $table = 'payments_plans';
 
     protected $fillable = [
         'plan',
+        'price',
         'client',
         'user_maker',
         'start_date',
@@ -27,6 +28,11 @@ class PaymentPlanS extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Clients::class, 'client');
+    }
+
+    public function price(): BelongsTo
+    {
+        return $this->belongsTo(Prices::class, 'price');
     }
 
     public function userMaker(): BelongsTo

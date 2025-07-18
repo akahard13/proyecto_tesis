@@ -11,13 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('catalogs.plans', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('frequency_id');
+            $table->unsignedBigInteger('plan_id');
+            $table->float('price');
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
+
+            $table->foreign('frequency_id')
+                ->references('id')
+                ->on('catalogs.frequencies')
+                ->onDelete('cascade');
+            $table->foreign('plan_id')
+                ->references('id')
+                ->on('catalogs.plans')
+                ->onDelete('cascade');
         });
     }
 
@@ -26,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('catalogs.plans');
+        Schema::dropIfExists('prices');
     }
 };

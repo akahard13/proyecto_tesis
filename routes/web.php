@@ -4,6 +4,7 @@ use App\Http\Controllers\Catalogs\JobPositionController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
 use Illuminate\Foundation\Application;
@@ -59,6 +60,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/employees/{employee}/edit', [EmployeesController::class, 'edit'])->name('employees.edit');
     Route::put('/employees/{employee}', [EmployeesController::class, 'update'])->name('employees.update');
     Route::delete('/employees/{employee}', [EmployeesController::class, 'delete'])->name('employees.delete');
+    //PLANS ROUTES
+    Route::get('/plans', [PlansController::class, 'index'])->name('plans');
+    Route::get('/plans/create', [PlansController::class, 'create'])->name('plans.create');
+    Route::get('/plans/{plan}/edit', [PlansController::class, 'edit'])->name('plans.edit');
+    Route::put('/plans/{plan}/update', [PlansController::class, 'update'])->name('plans.update');
+    Route::delete('/plans/{plan}/delete', [PlansController::class, 'delete'])->name('plans.delete');
+    Route::post('/plans/store', [PlansController::class, 'store'])->name('plans.store');
 });
 
 require __DIR__ . '/auth.php';

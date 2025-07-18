@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('plan');
+            $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('client');
             $table->unsignedBigInteger('user_maker')->nullable();
 
@@ -24,7 +25,8 @@ return new class extends Migration {
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 
-            $table->foreign('plan')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreign('plan')->references('id')->on('catalogs.plans')->onDelete('cascade');
+            $table->foreign('price')->references('id')->on('prices')->onDelete('cascade');
             $table->foreign('client')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('user_maker')->references('id')->on('system.users')->onDelete('set null');
         });
