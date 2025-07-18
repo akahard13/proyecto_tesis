@@ -59,7 +59,7 @@ class ClientController extends Controller
                 'cellphone' => $request->cellphone
             ], true);
             $this->createUser($cliente, 'client', $request->name, $request->lastname, $request->email, $this->rol);
-            return redirect()->route('clients',)->with('success', 'Cliente creado correctamente.');
+            return redirect()->route('clients')->with('success', 'Cliente creado correctamente.');
         } catch (Exception $e) {
             return $this->respuestaJson(['error' => $e->getMessage()], 500);
         }
