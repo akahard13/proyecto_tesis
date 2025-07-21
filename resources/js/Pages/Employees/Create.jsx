@@ -10,6 +10,7 @@ export default function Create() {
         birthday: '',
         gender_id: '',
         cellphone: '',
+        hiring_day: '',
         job_position_id: '',
     });
 
@@ -25,7 +26,7 @@ export default function Create() {
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col flex-1">
-                        <InputLabel htmlFor="name"  value="Nombres" className="text-factor-dark font-semibold" />
+                        <InputLabel htmlFor="name" value="Nombres" className="text-factor-dark font-semibold" />
                         <input
                             label="Nombre"
                             name="name"
@@ -35,7 +36,8 @@ export default function Create() {
                             error={errors.name}
                             required
                         />
-                        </div>
+                    </div>
+
                     <div className="flex flex-col flex-1">
                         <InputLabel htmlFor="lastname" value="Apellidos" className="text-factor-dark font-semibold" />
                         <input
@@ -49,7 +51,8 @@ export default function Create() {
                         />
                     </div>
                     <div className="flex flex-col flex-1">
-                        <InputLabel htmlFor="birthday" value="Fecha de nacimiento" className="text-factor-dark font-semibold" />    
+                        <InputLabel htmlFor="birthday" value="Fecha de nacimiento" className="text-factor-dark font-semibold" />
+
                         <input
                             label="Fecha de nacimiento"
                             name="birthday"
@@ -62,11 +65,28 @@ export default function Create() {
                         />
                     </div>
                     <div className="flex flex-col flex-1">
+                        <InputLabel htmlFor="hiring_day" value="Fecha de contratación" className="text-factor-dark font-semibold" />
+                        <input
+                            label="Fecha de contratación"
+                            name="hiring_day"
+                            id="hiring_day"
+                            type="date"
+                            value={data.hiring_day}
+                            onChange={(e) => setData('hiring_day', e.target.value)}
+                            error={errors.hiring_day}
+                            required
+                        />
+                    </div>
+
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="flex flex-col flex-1">
                         <InputLabel htmlFor="gender_id" value="Género" className="text-factor-dark font-semibold" />
+
                         <select
                             label="Género"
                             name="gender_id"
-                            id="gender_id"
+                            id='gender_id'
                             value={data.gender_id}
                             onChange={(e) => setData('gender_id', e.target.value)}
                             error={errors.gender_id}
@@ -83,7 +103,6 @@ export default function Create() {
                     <div className="flex flex-col flex-1">
                         <InputLabel htmlFor="cellphone" value="Celular" className="text-factor-dark font-semibold" />
                         <input
-                            placeholder='8888-8888'
                             label="Celular"
                             name="cellphone"
                             id="cellphone"
@@ -112,14 +131,13 @@ export default function Create() {
                                 </option>
                             ))}
                         </select>
-
                     </div>
                 </div>
-                    <div className="flex justify-end">
-                        <button type="submit" disabled={processing} className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-2 rounded">
-                            {processing ? 'Creando...' : 'Crear Empleado'}
-                        </button>
-                    </div>
+                <div className="flex justify-end">
+                    <button type="submit" disabled={processing} className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-2 rounded">
+                        {processing ? 'Creando...' : 'Crear Personal'}
+                    </button>
+                </div>
             </form>
         </Wrap>
     );
