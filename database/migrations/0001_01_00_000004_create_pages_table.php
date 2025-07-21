@@ -70,6 +70,26 @@ return new class extends Migration {
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now
+            ],
+            [
+                'name' => 'Personal',
+                'slug' => 'employees',
+                'url' => '/employees',
+                'icon' => null,
+                'index' => 5,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now
+            ],
+            [
+                'name' => 'Planes',
+                'slug' => 'plans',
+                'url' => '/plans',
+                'icon' => null,
+                'index' => 6,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now
             ]
         ];
         DB::table('system.pages')->insert($paginas);
