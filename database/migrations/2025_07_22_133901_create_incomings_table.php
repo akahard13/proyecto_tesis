@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('amount');
             $table->date('registered_at');
             $table->unsignedBigInteger('payment_plan_id')->nullable();
-            $table->foreign('payment_plan_id')->references('id')->on('payment_plans')->onDelete('cascade');
+            $table->foreign('payment_plan_id')->references('id')->on('payments_plans')->onDelete('cascade');
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
