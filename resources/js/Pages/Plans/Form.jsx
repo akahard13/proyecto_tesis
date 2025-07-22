@@ -1,9 +1,10 @@
 import { useForm } from "@inertiajs/react";
 import Wrap from "@/Components/Wrap";
 import InputLabel from "@/Components/InputLabel";
+import InputError from "@/Components/InputError";
 
 export default function Form({ plan = null, frequencies }) {
-    const { data, setData, post, put, processing } = useForm({
+    const { data, setData, post, put, processing, errors } = useForm({
         name: plan?.name || '',
         mensual: plan?.mensual || '',
         quincenal: plan?.quincenal || '',
@@ -36,16 +37,17 @@ export default function Form({ plan = null, frequencies }) {
 
                 {frequencies.map((frec) => (
                     <div key={frec.id}>
-                        <InputLabel htmlFor={frec} value={`Precio ${frec.name}`} />
+                        <InputLabel htmlFor={frec.name} value={`Precio ${frec.name}`} />
                         <input
                             id={frec.name}
                             name={frec.name}
-                            type="real"
+                            type="number"
                             value={data[frec.name]}
                             onChange={(e) => setData(frec.name, e.target.value)}
                             className="w-full border px-4 py-2 rounded"
                             min="0"
                         />
+                        <InputError message={errors[frec.name]} className="mt-2" />
                     </div>
                 ))}
 

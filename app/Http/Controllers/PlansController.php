@@ -26,7 +26,9 @@ class PlansController extends Controller
     public function create()
     {
         return Inertia::render('Plans/Form', [
-            'frequencies' => Frequencies::where('active', true)->get()
+            'frequencies' => Frequencies::where('active', true)
+                ->selectRaw('id, LOWER(name) as name')
+                ->get()
         ]);
     }
     public function store(Request $request)
