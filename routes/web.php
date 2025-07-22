@@ -4,6 +4,7 @@ use App\Http\Controllers\Catalogs\JobPositionController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IncomingsController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
@@ -75,6 +76,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/categories/{id}/update', [CategoriesController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}/delete', [CategoriesController::class, 'destroy'])->name('categories.destroy');
     Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
+    //incomings ROUTES
+    Route::get('/incomings', [IncomingsController::class, 'index'])->name('incomings');
+    Route::get('/incomings/create', [IncomingsController::class, 'create'])->name('incomings.create');
+    Route::get('/incomings/{incoming}/edit', [IncomingsController::class, 'edit'])->name('incomings.edit');
+    Route::put('/incomings/{incoming}/update', [IncomingsController::class, 'update'])->name('incomings.update');
+    Route::delete('/incomings/{incoming}/delete', [IncomingsController::class, 'delete'])->name('incomings.delete');
+    Route::post('/incomings/store', [IncomingsController::class, 'store'])->name('incomings.store');
 });
 
 require __DIR__ . '/auth.php';

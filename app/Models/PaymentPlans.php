@@ -19,6 +19,12 @@ class PaymentPlans extends Model
         'active',
         'deleted'
     ];
+    protected $casts = [
+        'active' => 'boolean',
+        'deleted' => 'boolean',
+        'start_date' => 'date:Y-m-d',
+        'end_date' => 'date:Y-m-d'
+    ];
 
     public function plan(): BelongsTo
     {
