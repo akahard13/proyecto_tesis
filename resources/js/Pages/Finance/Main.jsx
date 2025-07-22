@@ -6,7 +6,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 import ConfirmModal from '@/Components/ConfirmModal';
 
-export default function Main({ ingreso = false, title = 'Crear Ingreso' }) {
+export default function Main({ ingreso = false, title = 'Crear Ingreso', modal_accion = 'egreso' }) {
     const { delete: destroy } = useForm();
     const permissions = usePage().props.auth.permissions;
     const { flash, data } = usePage().props;
@@ -19,7 +19,7 @@ export default function Main({ ingreso = false, title = 'Crear Ingreso' }) {
     const handleDeleteClick = (id) => {
         setSelectedId(id);
         setAction('Eliminar');
-        setModalTitle('¿Estás seguro de que quieres eliminar este ingreso?');
+        setModalTitle('¿Estás seguro de que quieres eliminar este ' + (ingreso ? 'ingreso' : 'egreso') + '?');
         setShowModal(true);
     };
 
