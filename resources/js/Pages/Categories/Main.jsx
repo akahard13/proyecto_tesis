@@ -48,50 +48,51 @@ export default function CategoriesMain({ categories }) {
                     {flash.success}
                 </div>
             )}
-            <table className="min-w-full divide-y divide-slate-500">
-                <thead className="bg-factor-primary">
-                    <tr>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-white">Nº</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-white">Nombre</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-white">Ingresos</th>
-                        <th className="px-6 py-3 text-left text-sm font-medium text-white">Egresos</th>
-                        {showActions && (
-                            <th className="px-6 py-3 text-left text-sm font-medium text-white">Acciones</th>
-                        )}
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                    {categories.map((category) => (
-                        <tr key={category.id} className="hover:bg-slate-400 text-factor-dark hover:text-white">
-                            <td className="px-6 py-4 text-sm">{category.id}</td>
-                            <td className="px-6 py-4 text-sm">{category.name}</td>
-                            <td className="px-6 py-4 text-sm">{category.incoming ? 'Sí' : 'No'}</td>
-                            <td className="px-6 py-4 text-sm">{category.outcoming ? 'Sí' : 'No'}</td>
+            <div className="w-full overflow-x-auto">
+                <table className="min-w-full divide-y divide-slate-500">
+                    <thead className="bg-factor-primary">
+                        <tr>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-white">Nº</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-white">Nombre</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-white">Ingresos</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-white">Egresos</th>
                             {showActions && (
-                                <td className="px-6 py-4 text-sm flex items-center gap-4">
-                                    {can('categories.update', permissions) && (
-                                        <a
-                                            href={route('categories.edit', category.id)}
-                                            className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-1.5 rounded transition"
-                                        >
-                                            Editar
-                                        </a>
-                                    )}
-                                    {can('categories.delete', permissions) && (
-                                        <button
-                                            onClick={() => openDeleteModal(category)}
-                                            className="bg-red-500 text-white px-4 py-1.5 rounded font-semibold hover:bg-red-700 transition"
-                                        >
-                                            Eliminar
-                                        </button>
-                                    )}
-                                </td>
+                                <th className="px-6 py-3 text-left text-sm font-medium text-white">Acciones</th>
                             )}
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                        {categories.map((category) => (
+                            <tr key={category.id} className="hover:bg-slate-400 text-factor-dark hover:text-white">
+                                <td className="px-6 py-4 text-sm">{category.id}</td>
+                                <td className="px-6 py-4 text-sm">{category.name}</td>
+                                <td className="px-6 py-4 text-sm">{category.incoming ? 'Sí' : 'No'}</td>
+                                <td className="px-6 py-4 text-sm">{category.outcoming ? 'Sí' : 'No'}</td>
+                                {showActions && (
+                                    <td className="px-6 py-4 text-sm flex items-center gap-4">
+                                        {can('categories.update', permissions) && (
+                                            <a
+                                                href={route('categories.edit', category.id)}
+                                                className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold px-4 py-1.5 rounded transition"
+                                            >
+                                                Editar
+                                            </a>
+                                        )}
+                                        {can('categories.delete', permissions) && (
+                                            <button
+                                                onClick={() => openDeleteModal(category)}
+                                                className="bg-red-500 text-white px-4 py-1.5 rounded font-semibold hover:bg-red-700 transition"
+                                            >
+                                                Eliminar
+                                            </button>
+                                        )}
+                                    </td>
+                                )}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <ConfirmModal
                 show={showModal}
                 title={modalTitle}
