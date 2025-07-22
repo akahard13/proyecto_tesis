@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Models\Catalogs\Categories;
 use Illuminate\Database\Eloquent\Model;
 
-class Outcomings extends Model
+class Outgoings extends Model
 {
-    protected $table = 'outcomings';
+    protected $table = 'outgoings';
 
     protected $fillable = [
         'category_id',

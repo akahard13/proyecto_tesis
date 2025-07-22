@@ -6,7 +6,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 import ConfirmModal from '@/Components/ConfirmModal';
 
-export default function Main() {
+export default function Main({ ingreso = false, title = 'Crear Ingreso' }) {
     const { delete: destroy } = useForm();
     const permissions = usePage().props.auth.permissions;
     const { flash, data } = usePage().props;
@@ -24,7 +24,12 @@ export default function Main() {
     };
 
     const handleConfirm = () => {
-        destroy(route('incomings.delete', selectedId));
+        if (ingreso) {
+            destroy(route('incomings.delete', selectedId));
+        }else{
+            destroy(route('outgoings.delete', selectedId));
+        }
+
         setShowModal(false);
     };
 
@@ -45,10 +50,10 @@ export default function Main() {
             {can('incomings.store', permissions) && (
                 <div className="flex items-center justify-between mb-6">
                     <a
-                        href={route('incomings.create')}
+                        href={route(ingreso ? 'incomings.create' : 'outgoings.create')}
                         className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
                     >
-                        Registrar Ingreso
+                        {title}
                     </a>
                 </div>
             )}
@@ -80,7 +85,7 @@ export default function Main() {
                                 <td className="px-6 py-4 text-sm flex items-center justify-between gap-2">
                                     {can('incomings.update', permissions) && (
                                         <a
-                                            href={route('incomings.edit', item.id)}
+                                            href={ingreso ? route('incomings.edit', item.id) : route('outgoings.edit', item.id)}
                                             className="text-factor-primary"
                                         >
                                             <MdOutlineEdit className='w-8 h-8' title='Editar' />

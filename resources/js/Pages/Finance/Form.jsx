@@ -3,7 +3,7 @@ import Wrap from '@/Components/Wrap';
 import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 
-export default function Form({ categories, finance = null, edit = false, title = 'Registrar Ingreso', button_text = 'Guardar Ingreso', default_date }) {
+export default function Form({ ingreso = false, categories, finance = null, edit = false, title = 'Registrar Ingreso', button_text = 'Guardar Ingreso', default_date }) {
     const { data, setData, post, put, processing, errors } = useForm({
         category_id: finance?.category_id || '',
         description: finance?.description || '',
@@ -13,10 +13,18 @@ export default function Form({ categories, finance = null, edit = false, title =
 
     const submit = (e) => {
         e.preventDefault();
-        if (edit) {
-            put(route('incomings.update', finance.id));
+        if (ingreso) {
+            if (edit) {
+                put(route('incomings.update', finance.id));
+            } else {
+                post(route('incomings.store'));
+            }
         } else {
-            post(route('incomings.store'));
+            if (edit) {
+                put(route('outgoings.update', finance.id));
+            } else {
+                post(route('outgoings.store'));
+            }
         }
     };
 

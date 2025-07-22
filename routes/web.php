@@ -5,10 +5,13 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncomingsController;
+use App\Http\Controllers\OutcomingsController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
 use App\Http\Controllers\Catalogs\CategoriesController;
+use App\Http\Controllers\OutgoingsController;
+use App\Models\Outcomings;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -76,13 +79,20 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/categories/{id}/update', [CategoriesController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}/delete', [CategoriesController::class, 'destroy'])->name('categories.destroy');
     Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
-    //incomings ROUTES
+    //INCOMINGS ROUTES
     Route::get('/incomings', [IncomingsController::class, 'index'])->name('incomings');
     Route::get('/incomings/create', [IncomingsController::class, 'create'])->name('incomings.create');
     Route::get('/incomings/{incoming}/edit', [IncomingsController::class, 'edit'])->name('incomings.edit');
     Route::put('/incomings/{incoming}/update', [IncomingsController::class, 'update'])->name('incomings.update');
     Route::delete('/incomings/{incoming}/delete', [IncomingsController::class, 'delete'])->name('incomings.delete');
     Route::post('/incomings/store', [IncomingsController::class, 'store'])->name('incomings.store');
+    //OUTCOMINGS ROUTES
+    Route::get('/outgoings', [OutgoingsController::class, 'index'])->name('outgoings');
+    Route::get('/outgoings/create', [OutgoingsController::class, 'create'])->name('outgoings.create');
+    Route::get('/outgoings/{outgoing}/edit', [OutgoingsController::class, 'edit'])->name('outgoings.edit');
+    Route::put('/outgoings/{outgoing}/update', [OutgoingsController::class, 'update'])->name('outgoings.update');
+    Route::delete('/outgoings/{outgoing}/delete', [OutgoingsController::class, 'delete'])->name('outgoings.delete');
+    Route::post('/outgoings/store', [OutgoingsController::class, 'store'])->name('outgoings.store');
 });
 
 require __DIR__ . '/auth.php';
