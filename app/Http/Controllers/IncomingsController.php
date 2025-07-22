@@ -25,7 +25,8 @@ class IncomingsController extends Controller
         return Inertia::render('Finance/Main', [
             'data' => $incomings,
             'categories' => $categories,
-            'start_date' => $today
+            'start_date' => $today,
+            'ingreso' => true,
         ]);
     }
 
