@@ -39,7 +39,8 @@ class IncomingsController extends Controller
             'edit' => false,
             'title' => 'Registrar Ingresos',
             'button_text' => 'Guardar Ingreso',
-            'default_date' => $today
+            'default_date' => $today,
+            'ingreso' => true
         ]);
     }
     public function store(Request $request)
@@ -65,7 +66,8 @@ class IncomingsController extends Controller
             'categories' => $categories,
             'edit' => true,
             'title' => 'Editar Ingreso',
-            'button_text' => 'Actualizar Ingreso'
+            'button_text' => 'Actualizar Ingreso',
+            'ingreso' => true
         ]);
     }
 
