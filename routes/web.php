@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
+use App\Http\Controllers\Catalogs\CategoriesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -67,6 +68,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/plans/{plan}/update', [PlansController::class, 'update'])->name('plans.update');
     Route::delete('/plans/{plan}/delete', [PlansController::class, 'delete'])->name('plans.delete');
     Route::post('/plans/store', [PlansController::class, 'store'])->name('plans.store');
+    // CATEGORIES ROUTES
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
+    Route::get('/categories/create', [CategoriesController::class, 'create'])->name('categories.create');
+    Route::get('/categories/{id}/edit', [CategoriesController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{id}/update', [CategoriesController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{id}/delete', [CategoriesController::class, 'destroy'])->name('categories.destroy');
+    Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
 });
 
 require __DIR__ . '/auth.php';
