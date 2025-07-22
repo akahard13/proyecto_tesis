@@ -128,7 +128,7 @@ export default function create({ genders, inscription_date, code, client }) {
                     </div>
                 </div>
                 {
-                    can('job_positions.store', permissions) && (
+                    can('clients.store', permissions) && (
                         <button
                             type="submit"
                             disabled={processing}

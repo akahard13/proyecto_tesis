@@ -12,13 +12,13 @@ return new class extends Migration {
             $table->id();
 
             $table->unsignedBigInteger('plan');
-            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('frequency_id');
             $table->unsignedBigInteger('client');
             $table->unsignedBigInteger('user_maker')->nullable();
 
             $table->date('start_date')->default(DB::raw('CURRENT_DATE'));
             $table->date('end_date');
-
+            $table->float('amount');
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
 
@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->timestamp('updated_at')->useCurrent();
 
             $table->foreign('plan')->references('id')->on('catalogs.plans')->onDelete('cascade');
-            $table->foreign('price')->references('id')->on('prices')->onDelete('cascade');
+            $table->foreign('frequency_id')->references('id')->on('catalogs.frequencies')->onDelete('cascade');
             $table->foreign('client')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('user_maker')->references('id')->on('system.users')->onDelete('set null');
         });
