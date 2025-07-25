@@ -5,7 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncomingsController;
-use App\Http\Controllers\OutcomingsController;
+use App\Http\Controllers\PaymentPlansController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
@@ -93,6 +93,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/outgoings/{outgoing}/update', [OutgoingsController::class, 'update'])->name('outgoings.update');
     Route::delete('/outgoings/{outgoing}/delete', [OutgoingsController::class, 'delete'])->name('outgoings.delete');
     Route::post('/outgoings/store', [OutgoingsController::class, 'store'])->name('outgoings.store');
+    //PAYMENTS PLANS ROUTES
+    Route::get('/payments_plans/{client}', [PaymentPlansController::class, 'index'])->name('payments_plans');
+    Route::get('/payments_plans/create/{client}', [PaymentPlansController::class, 'create'])->name('payments_plans.create');
+    Route::post('/payments_plans/{client}', [PaymentPlansController::class, 'store'])->name('payments_plans.store');
+    Route::get('/payments_plans/{payment}/edit', [PaymentPlansController::class, 'edit'])->name('payments_plans.edit');
+    Route::put('/payments_plans/{payment}', [PaymentPlansController::class, 'update'])->name('payments_plans.update');
+    Route::delete('/payments_plans/{payment}', [PaymentPlansController::class, 'destroy'])->name('payments_plans.destroy');
+    Route::post('/payments_plans/prices/get', [PaymentPlansController::class, 'getPricesPerPlan'])->name('payments_plans.prices');
 });
 
 require __DIR__ . '/auth.php';

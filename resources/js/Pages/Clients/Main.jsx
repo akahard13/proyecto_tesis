@@ -17,7 +17,7 @@ export default function clients({ clients }) {
     const [selectedId, setSelectedId] = useState(null);
     const [modalTitle, setModalTitle] = useState('');
     const [modalAction, setModalAction] = useState('delete');
-const [action, setAction] = useState('Eliminar');
+    const [action, setAction] = useState('Eliminar');
     const handleDeleteClick = (id) => {
         setSelectedId(id);
         setModalAction('delete');
@@ -64,7 +64,7 @@ const [action, setAction] = useState('Eliminar');
                         href={route('clients.create')}
                         className="bg-factor-yellow-500 hover:bg-factor-yellow-700 text-black font-semibold py-1.5 px-4 rounded shadow-sm transition duration-150 ease-in-out"
                     >
-                        Crear Nuevo Cliente
+                        Nuevo Cliente
                     </a>
                 </div>
             )}
@@ -102,6 +102,14 @@ const [action, setAction] = useState('Eliminar');
                                 <td className="px-6 py-4 text-sm">{cli.cellphone}</td>
 
                                 <td className="px-6 py-4 text-sm text-factor-dark flex items-center justify-between gap-2">
+                                    {can('payments_plans.view', permissions) && (
+                                        <a
+                                            href={route('payments_plans', cli.id)}
+                                            className="text-factor-primary"
+                                        >
+                                            <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar' />
+                                        </a>
+                                    )}
                                     {can('clients.update', permissions) && (
                                         <a
                                             href={route('clients.edit', cli.id)}
@@ -117,14 +125,6 @@ const [action, setAction] = useState('Eliminar');
                                         >
                                             <FaRegTrashAlt className='w-8 h-8' title='Eliminar' />
                                         </button>
-                                    )}
-                                    {can('clients.delete', permissions) && (
-                                        <a
-                                            href={route('clients.edit', cli.id)}
-                                            className="text-factor-primary"
-                                        >
-                                            <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar' />
-                                        </a>
                                     )}
                                     {can('clients.update', permissions) && (
                                         <button
