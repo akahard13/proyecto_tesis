@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Prices extends Model
 {
+    protected $table = 'prices';
     protected $fillable = [
         'frequency_id',
         'plan_id',
