@@ -90,6 +90,56 @@ return new class extends Migration {
                 'active' => true,
                 'deleted' => false,
                 'created_at' => $now
+            ],
+            [
+                'name'=>'Pago de clientes',
+                'slug'=>'payments_plans',
+                'url'=>'/payments_plans',
+                'icon'=>null,
+                'index'=>7,
+                'active'=>true,
+                'deleted'=>false,
+                'created_at'=>$now
+            ],
+            [
+                'name' => 'Pagos de personal',
+                'slug' => 'payments_employees',
+                'url' => '/payments_employees',
+                'icon' => null,
+                'index' => 8,
+                'active' => true,
+                'deleted' => false,
+                'created_at' => $now
+            ],
+            [
+                'name'=>'Categorias',
+                'slug'=>'categories',
+                'url'=>'/categories',
+                'icon'=>null,
+                'index'=>9,
+                'active'=>true,
+                'deleted'=>false,
+                'created_at'=>$now
+            ],
+            [
+                'name'=>'Ingresos',
+                'slug'=>'incomings',
+                'url'=>'/incomings',
+                'icon'=>null,
+                'index'=>10,
+                'active'=>true,
+                'deleted'=>false,
+                'created_at'=>$now
+            ],
+            [
+                'name'=>'Egresos',
+                'slug'=>'outgoings',
+                'url'=>'/outgoings',
+                'icon'=>null,
+                'index'=>11,
+                'active'=>true,
+                'deleted'=>false,
+                'created_at'=>$now
             ]
         ];
         DB::table('system.pages')->insert($paginas);
