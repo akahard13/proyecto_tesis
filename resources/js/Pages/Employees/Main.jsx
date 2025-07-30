@@ -61,13 +61,14 @@ export default function Employees() {
                 <table className="min-w-full divide-y divide-slate-500 overflow-scroll">
                     <thead className="bg-factor-primary">
                         <tr>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-white">ID</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-white">N°</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Nombre</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Apellidos</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Fecha de nacimiento</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Género</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Celular</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Puesto</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-white">Salario</th>
                             <th className="px-6 py-3 text-left text-sm font-medium text-white">Acciones</th>
                         </tr>
                     </thead>
@@ -81,6 +82,9 @@ export default function Employees() {
                                 <td className="px-6 py-4 text-sm">{emp.gender_name}</td>
                                 <td className="px-6 py-4 text-sm">{emp.cellphone}</td>
                                 <td className="px-6 py-4 text-sm">{emp.job_position_name || 'N/A'}</td>
+                                <td className="px-6 py-4 text-sm">
+                                    {emp.salary ? `C$ ${Number(emp.salary).toLocaleString()}` : 'N/A'}
+                                </td>
                                 <td className="px-6 py-4 text-sm text-factor-dark flex items-center justify-between gap-2">
                                     {can('employees.update', permissions) && (
                                         <a

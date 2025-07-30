@@ -18,7 +18,7 @@ class EmployeesServices
                 $join->on('u.id', '=', 'e.id')
                     ->where('u.rol_id', '=', 3);
             })
-            ->select('e.*', 'gen.name as gender_name', 'jp.name as job_position_name', 'u.username as user_name')
+            ->select('e.*', 'gen.name as gender_name', 'jp.name as job_position_name', 'u.username as user_name', 'e.salary as salary')
             ->where('e.deleted', false)
             ->where('e.active', true)
             ->get();
@@ -32,6 +32,7 @@ class EmployeesServices
         $employee->gender_id = $request->gender_id;
         $employee->cellphone = $request->cellphone;
         $employee->job_position_id = $request->job_position_id;
+        $employee->salary = $request->salary;
         $employee->hiring_day = $request->hiring_day;
         $employee->save();
 

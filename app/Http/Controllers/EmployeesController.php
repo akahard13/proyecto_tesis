@@ -45,7 +45,8 @@ class EmployeesController extends Controller
             'gender_id' => 'required|numeric',
             'cellphone' => 'required|numeric',
             'job_position_id' => 'required|numeric',
-            'hiring_day' => 'required|date'
+            'hiring_day' => 'required|date',
+            'salary' => 'required|numeric|min:0'
         ]);
 
         try {
@@ -56,7 +57,8 @@ class EmployeesController extends Controller
                 'gender_id' => $request->gender_id,
                 'cellphone' => $request->cellphone,
                 'job_position_id' => $request->job_position_id,
-                'hiring_day' => $request->hiring_day
+                'hiring_day' => $request->hiring_day,
+                'salary' => $request->salary
             ], true);
 
             $this->createUser(
@@ -79,7 +81,8 @@ class EmployeesController extends Controller
         return Inertia::render('Employees/Edit', [
             'employee' => $employee,
             'genders' => Gender::all(),
-            'job_positions' => JobPositions::all()
+            'job_positions' => JobPositions::all(),
+            'salary' => $employee->salary
         ]);
     }
     public function update(Request $request, $id)
@@ -91,7 +94,8 @@ class EmployeesController extends Controller
             'gender_id' => 'required|numeric',
             'cellphone' => 'required|numeric',
             'job_position_id' => 'required|numeric',
-            'hiring_day' => 'required|date'
+            'hiring_day' => 'required|date',
+            'salary' => 'required|numeric|min:0'
         ]);
 
         try {

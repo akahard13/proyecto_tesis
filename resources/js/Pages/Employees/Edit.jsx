@@ -13,6 +13,7 @@ export default function Edit() {
         gender_id: employee.gender_id,
         cellphone: employee.cellphone,
         job_position_id: employee.job_position_id,
+        salary: employee.salary
     });
 
     const handleSubmit = (e) => {
@@ -49,34 +50,42 @@ export default function Edit() {
                             required
                         />
                     </div>
-                    <div className="flex flex-col flex-1">
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="flex flex-col">
                         <InputLabel htmlFor="birthday" value="Fecha de nacimiento" className="text-factor-dark font-semibold" />
-
                         <input
-                            label="Fecha de nacimiento"
+                            type="date"
                             name="birthday"
                             id="birthday"
-                            type="date"
                             value={data.birthday}
                             onChange={(e) => setData('birthday', e.target.value)}
-                            error={errors.birthday}
-                            required
-                        />
-                    </div>
-                    <div className="flex flex-col flex-1">
-                        <InputLabel htmlFor="hiring_day" value="Fecha de contratación" className="text-factor-dark font-semibold" />
-                        <input
-                            label="Fecha de contratación"
-                            name="hiring_day"
-                            id="hiring_day"
-                            type="date"
-                            value={data.hiring_day}
-                            onChange={(e) => setData('hiring_day', e.target.value)}
-                            error={errors.hiring_day}
                             required
                         />
                     </div>
 
+                    <div className="flex flex-col">
+                        <InputLabel htmlFor="hiring_day" value="Fecha de contratación" className="text-factor-dark font-semibold" />
+                        <input
+                            type="date"
+                            name="hiring_day"
+                            id="hiring_day"
+                            value={data.hiring_day}
+                            onChange={(e) => setData('hiring_day', e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <InputLabel htmlFor="salary" value="Salario" className="text-factor-dark font-semibold" />
+                        <input
+                            type="number"
+                            name="salary"
+                            id="salary"
+                            value={data.salary}
+                            onChange={(e) => setData('salary', e.target.value)}
+                            required
+                        />
+                    </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="flex flex-col flex-1">
