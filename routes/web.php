@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\System\PermissionController;
 use App\Http\Controllers\Catalogs\CategoriesController;
 use App\Http\Controllers\OutgoingsController;
+use App\Http\Controllers\PaymentEmployeesController;
 use App\Models\Outcomings;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -101,6 +102,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/payments_plans/{payment}', [PaymentPlansController::class, 'update'])->name('payments_plans.update');
     Route::delete('/payments_plans/{payment}', [PaymentPlansController::class, 'destroy'])->name('payments_plans.destroy');
     Route::post('/payments_plans/prices/get', [PaymentPlansController::class, 'getPricesPerPlan'])->name('payments_plans.prices');
+    //PAYMENT EMPLOYEES ROUTES
+    Route::get('/payments_employees', [PaymentEmployeesController::class, 'index'])->name('payments_employees');
+    Route::get('/payments_employees/create/{id?}', [PaymentEmployeesController::class, 'create'])->name('payments_employees.create');
+    Route::post('/payments_employees/store', [PaymentEmployeesController::class, 'store'])->name('payments_employees.store');
+    Route::delete('/payments_employees/{payment}', [PaymentEmployeesController::class, 'destroy'])->name('payments_employees.destroy');
 });
 
 require __DIR__ . '/auth.php';

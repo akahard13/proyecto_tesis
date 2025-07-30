@@ -5,6 +5,7 @@ import Wrap from '@/Components/Wrap';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 import ConfirmModal from '@/Components/ConfirmModal';
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 export default function Employees() {
     const { delete: destroy } = useForm();
@@ -87,6 +88,14 @@ export default function Employees() {
                                             className="text-factor-primary"
                                         >
                                             <MdOutlineEdit className='w-8 h-8' title='Editar' />
+                                        </a>
+                                    )}
+                                    {can('employees.delete', permissions) && (
+                                        <a
+                                            href={route('payments_employees', emp.id)}
+                                            className="text-factor-primary"
+                                        >
+                                            <RiMoneyDollarCircleLine className='w-8 h-8' title='Pagar' />
                                         </a>
                                     )}
                                     {can('employees.delete', permissions) && (

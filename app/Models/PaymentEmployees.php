@@ -9,13 +9,14 @@ class PaymentEmployees extends Model
     protected $table = 'payment_employees';
     protected $fillable = [
         'payment_date',
-        'employee_id',
+        'employee',
         'amount',
         'description',
     ];
 
-    public function employee()
+     public function employee()
     {
-        return $this->belongsTo(Employees::class, 'employee_id');
+        return $this->belongsTo(Employees::class, 'employee'); 
     }
+    
 }
