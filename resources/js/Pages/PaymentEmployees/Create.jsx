@@ -28,7 +28,7 @@ export default function Create() {
     };
     return (
         <Wrap header="Registrar Pago a Empleado">
-            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto  p-6 rounded ">
+            <form onSubmit={handleSubmit} className="max mx-auto  p-6 rounded ">
                 <div className="mb-4">
                     <label className="block font-semibold mb-1">Empleado</label>
                     <select
@@ -54,15 +54,19 @@ export default function Create() {
 
                 <div className="mb-4">
                     <label className="block font-semibold mb-1">Monto</label>
-                    <input
-                        type="number"
-                        step="0.01"
-                        value={data.amount}
-                        onChange={(e) => setData('amount', e.target.value)}
-                        className="w-full border px-3 py-2 rounded"
-                    />
+                    <div className="flex items-center px-3 py-2">
+                        <span className="mr-2 font-semibold text-black-600">C$</span>
+                        <input
+                            type="number"
+                            step="0.01"
+                            value={data.amount}
+                            onChange={(e) => setData('amount', e.target.value)}
+                            className="w-full outline-none"
+                        />
+                    </div>
                     {errors.amount && <div className="text-red-500 text-sm mt-1">{errors.amount}</div>}
                 </div>
+
 
                 <div className="mb-4">
                     <label className="block font-semibold mb-1">Descripción</label>
@@ -89,7 +93,7 @@ export default function Create() {
                     <button
                         type="submit"
                         disabled={processing}
-                        className="bg-factor-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+                        className="bg-factor-yellow-500 hover:bg-factor-yellow-600 text-black font-semibold py-2 px-4 rounded shadow-sm transition"
                     >
                         Guardar Pago
                     </button>
