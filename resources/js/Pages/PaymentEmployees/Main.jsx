@@ -40,9 +40,9 @@ console.log(employee, data);
             <Head title="Pagos" />
 
             <div className="flex justify-between items-center mb-6">
-                {can('payment_employees.view', permissions) && (
+                {can('payments_employees.store', permissions) && (
                     <a
-                       href={route('payment_employees.create', employee.id)}
+                       href={route('payments_employees.create', employee.id)}
                         className="bg-factor-yellow-500 hover:bg-factor-yellow-600 text-black font-semibold py-2 px-4 rounded shadow-sm transition"
                     >
                         Nuevo pago
@@ -65,10 +65,12 @@ console.log(employee, data);
                             <p className="text-lg font-semibold text-slate-800">
                                 {employee?.name} {employee?.lastname}
                             </p>
+                            <p className="text-sm text-slate-500">Cargo: {employee?.job_position?.name ?? 'N/D'}</p>
                             <p className="text-sm text-slate-500">{employee?.gender?.name ?? 'Género N/D'}</p>
                             <p className="text-sm text-slate-500">Celular: {employee?.cellphone ?? 'N/D'}</p>
                             <p className="text-sm text-slate-500">Fecha de nacimiento: {employee?.birthday ?? 'N/D'}</p>
-                            <p className="text-sm text-slate-500">Fecha de contratación: {employee?.hiring_date ?? 'N/D'}</p>
+                            <p className="text-sm text-slate-500">Fecha de contratación: {employee?.hiring_day ?? 'N/D'}</p>
+                            
                         </div>
 
                         {data.length > 0 && (

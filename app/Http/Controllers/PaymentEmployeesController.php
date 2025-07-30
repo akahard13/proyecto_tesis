@@ -23,6 +23,7 @@ class PaymentEmployeesController extends Controller
 
     public function index(Employees $employee)
     {
+        $employee->load('gender', 'jobPosition');
         $payments = (new PaymentEmployeesServices)->getPaymentEmployee($employee);
 
         return Inertia::render('PaymentEmployees/Main', [
@@ -36,7 +37,6 @@ class PaymentEmployeesController extends Controller
         $lastPayment = $this->_service->getLastPayment($employee);
         return Inertia::render('PaymentEmployees/Create', [
             'employee' => $employee,
-            'lastPayment' => $lastPayment,
             'defaultDate' => date('Y-m-d'),
         ]);
     }
@@ -51,7 +51,7 @@ class PaymentEmployeesController extends Controller
                 'description' => ['nullable', 'string', 'max:255'],
             ]);
             $this->_service->createPayment($request, $employee, $user);
-            return redirect()->route('payment_employees', $employee->id)->with('success', 'Pago registrado exitosamente.');
+            return redirect()->route('payments_employees', $employee->id)->with('success', 'Pago registrado exitosamente.');
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

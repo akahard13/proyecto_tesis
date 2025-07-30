@@ -90,7 +90,7 @@ export default function Employees() {
                                             <MdOutlineEdit className='w-8 h-8' title='Editar' />
                                         </a>
                                     )}
-                                    {can('employees.delete', permissions) && (
+                                    {can('payments_employees.view', permissions) && (
                                         <a
                                             href={route('payments_employees', emp.id)}
                                             className="text-factor-primary"

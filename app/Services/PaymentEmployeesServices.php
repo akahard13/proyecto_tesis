@@ -11,16 +11,20 @@ class PaymentEmployeesServices
 {
     public function getAllPayments()
     {
-        return PaymentEmployees::with('employee')
-            ->where('deleted', false)
-            ->get();
+        return DB::table('payments_employees as pem')
+            ->join('outgoings as out', 'out.payment_employee_id', '=', 'pem.id')
+            ->where('pem.deleted', false)
+            ->where('out.deleted', false);
     }
     public function getPaymentEmployee(Employees $employee)
     {
-        return PaymentEmployees::where('employee', $employee->id)
-            ->where('deleted', false)
-            ->orderBy('payment_date', 'desc')
-            ->get(['id', 'payment_date', 'amount', 'description']);
+        return DB::table('payment_employees as pem')
+            ->join('outgoings as out', 'out.payment_employee_id', '=', 'pem.id')
+            ->where('pem.deleted', false)
+            ->where('out.deleted', false)
+            ->where('pem.employee', $employee->id)
+            ->orderBy('pem.payment_date', 'desc')
+            ->get(['pem.id', 'pem.payment_date', 'pem.amount', 'pem.description']);
     }
     public function getLastPayment(Employees $employee)
     {
@@ -41,7 +45,8 @@ class PaymentEmployeesServices
 
         // guardar el registro de egreso
         $outgoing = new Outgoings();
-        $outgoing->date = $data['payment_date'];
+        $outgoing->registered_at = $data['payment_date'];
+        $outgoing->category_id = 3;
         $outgoing->amount = $data['amount'];
         $outgoing->description = $data['description'];
         $outgoing->payment_employee_id = $payment->id;
