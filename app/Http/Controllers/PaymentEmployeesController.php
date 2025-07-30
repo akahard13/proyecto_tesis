@@ -56,4 +56,13 @@ class PaymentEmployeesController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+    public function destroy(PaymentEmployees $payment)
+    {
+        try {
+            $this->_service->destroy($payment);
+            return redirect()->back()->with('success', 'Pago eliminado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'No se pudo eliminar el pago.']);
+        }
+    }
 }

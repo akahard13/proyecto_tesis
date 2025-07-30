@@ -46,7 +46,7 @@ class PaymentEmployeesServices
         // guardar el registro de egreso
         $outgoing = new Outgoings();
         $outgoing->registered_at = $data['payment_date'];
-        $outgoing->category_id = 3;
+        $outgoing->category_id = 2;
         $outgoing->amount = $data['amount'];
         $outgoing->description = $data['description'];
         $outgoing->payment_employee_id = $payment->id;

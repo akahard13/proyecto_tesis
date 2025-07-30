@@ -14,7 +14,7 @@ export default function Main({ employee, data = [] }) {
     const [selectedId, setSelectedId] = useState(null);
     const [modalTitle, setModalTitle] = useState('');
     const [action, setAction] = useState('Eliminar');
-console.log(employee, data);
+    console.log(permissions);
     const handleDeleteClick = (id) => {
         setSelectedId(id);
         setAction('Eliminar');
@@ -23,7 +23,7 @@ console.log(employee, data);
     };
 
     const handleConfirm = () => {
-        destroy(route('payment_employees.destroy', { employee: employee.id, payment: selectedId }));
+        destroy(route('payments_employees.destroy', selectedId));
         setShowModal(false);
     };
 
@@ -115,7 +115,7 @@ console.log(employee, data);
                                     <td className="px-6 py-4 text-sm">C$ {Number(item.amount).toLocaleString()}</td>
                                     <td className="px-6 py-4 text-sm">{item.description}</td>
                                     <td className="px-6 py-4 text-sm">
-                                        {can('payment_employees.delete', permissions) && (
+                                         {can('payments_employees.delete', permissions) && (
                                             <button
                                                 onClick={() => handleDeleteClick(item.id)}
                                                 className="text-factor-primary hover:text-red-800"
