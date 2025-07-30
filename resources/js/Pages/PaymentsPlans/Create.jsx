@@ -6,7 +6,6 @@ import InputError from '@/Components/InputError';
 import { getEndDate } from '@/Utils/GetDates';
 
 export default function Create({ client, plans, frequencies = [], lastPayment, defaultDate }) {
-    console.log(lastPayment);
     const start_date = lastPayment?.end_date
         ? (() => {
             const date = new Date(lastPayment.end_date);
