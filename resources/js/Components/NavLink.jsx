@@ -9,7 +9,7 @@ export default function NavLink({
     return (
         <Link
             {...props}
-            className={`inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out focus:outline-none text-white ${
+            className={`inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out focus:outline-none text-white print:hidden ${
                 active
                     ? 'border-b-4 border-factor-yellow-500 font-semibold shadow-lg'
                     : 'hover:border-2 border-factor-yellow-500 hover:bg-opacity-75'
