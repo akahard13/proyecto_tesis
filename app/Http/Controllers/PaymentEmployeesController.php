@@ -65,4 +65,11 @@ class PaymentEmployeesController extends Controller
             return redirect()->back()->withErrors(['error' => 'No se pudo eliminar el pago.']);
         }
     }
+    public function receipt($id)
+    {
+        $payment = PaymentEmployees::with('employee', 'employee.gender', 'employee.jobPosition')->findOrFail($id);
+        return Inertia::render('PaymentEmployees/Receipt', [
+            'payment' => $payment,
+        ]);
+    }
 }

@@ -4,6 +4,7 @@ import Wrap from '@/Components/Wrap';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import ConfirmModal from '@/Components/ConfirmModal';
 import { can } from '@/Utils/Permissions';
+import { BsReceipt } from "react-icons/bs";
 
 export default function Main({ employee, data = [] }) {
     const permissions = usePage().props.auth.permissions;
@@ -42,7 +43,7 @@ export default function Main({ employee, data = [] }) {
             <div className="flex justify-between items-center mb-6">
                 {can('payments_employees.store', permissions) && (
                     <a
-                       href={route('payments_employees.create', employee.id)}
+                        href={route('payments_employees.create', employee.id)}
                         className="bg-factor-yellow-500 hover:bg-factor-yellow-600 text-black font-semibold py-2 px-4 rounded shadow-sm transition"
                     >
                         Nuevo pago
@@ -70,7 +71,7 @@ export default function Main({ employee, data = [] }) {
                             <p className="text-sm text-slate-500">Celular: {employee?.cellphone ?? 'N/D'}</p>
                             <p className="text-sm text-slate-500">Fecha de nacimiento: {employee?.birthday ?? 'N/D'}</p>
                             <p className="text-sm text-slate-500">Fecha de contratación: {employee?.hiring_day ?? 'N/D'}</p>
-                            
+
                         </div>
 
                         {data.length > 0 && (
@@ -114,14 +115,25 @@ export default function Main({ employee, data = [] }) {
                                     <td className="px-6 py-4 text-sm">{item.payment_date}</td>
                                     <td className="px-6 py-4 text-sm">C$ {Number(item.amount).toLocaleString()}</td>
                                     <td className="px-6 py-4 text-sm">{item.description}</td>
-                                    <td className="px-6 py-4 text-sm">
-                                         {can('payments_employees.delete', permissions) && (
+                                    <td className="px-6 py-4 text-sm flex items-center">
+                                        {can('payments_employees.delete', permissions) && (
                                             <button
                                                 onClick={() => handleDeleteClick(item.id)}
                                                 className="text-factor-primary hover:text-red-800"
                                             >
                                                 <FaRegTrashAlt className="w-6 h-6" title="Eliminar" />
                                             </button>
+                                        )}
+                                        {can('payments_employees.view', permissions) && (
+                                            <a
+                                                href={route('payments_employees.receipt', item.id)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-factor-primary hover:text-blue-800 ml-4"
+                                                title="Ver Recibo"
+                                            >
+                                                <BsReceipt className="w-6 h-6" />
+                                            </a>
                                         )}
                                     </td>
                                 </tr>

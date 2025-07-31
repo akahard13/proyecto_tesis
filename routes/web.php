@@ -107,6 +107,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payments_employees/create/{employee}', [PaymentEmployeesController::class, 'create'])->name('payments_employees.create');
     Route::post('/payments_employees/store/{employee}', [PaymentEmployeesController::class, 'store'])->name('payments_employees.store');
     Route::delete('/payments_employees/{payment}', [PaymentEmployeesController::class, 'destroy'])->name('payments_employees.destroy');
+    Route::get('/payments_employees/{id}/receipt', [PaymentEmployeesController::class, 'receipt'])->name('payments_employees.receipt');
+
 });
 
 require __DIR__ . '/auth.php';
