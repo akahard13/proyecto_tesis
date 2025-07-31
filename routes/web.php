@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/payments_plans/{payment}', [PaymentPlansController::class, 'update'])->name('payments_plans.update');
     Route::delete('/payments_plans/{payment}', [PaymentPlansController::class, 'destroy'])->name('payments_plans.destroy');
     Route::post('/payments_plans/prices/get', [PaymentPlansController::class, 'getPricesPerPlan'])->name('payments_plans.prices');
+    Route::get('/payments_plans/{id}/receipt', [PaymentPlansController::class, 'receipt'])->name('payments_plans.receipt');
     //PAYMENT EMPLOYEES ROUTES
     Route::get('/payments_employees/{employee}', [PaymentEmployeesController::class, 'index'])->name('payments_employees');
     Route::get('/payments_employees/create/{employee}', [PaymentEmployeesController::class, 'create'])->name('payments_employees.create');

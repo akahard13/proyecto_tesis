@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Catalogs\Gender;
+use App\Models\PaymentPlans;
 
 class Clients extends Model
 {
@@ -34,5 +35,9 @@ class Clients extends Model
     public function getFullNameAttribute()
     {
         return "{$this->name} {$this->lastname}";
+    }
+    public function payments_plans()
+    {
+        return $this->hasMany(PaymentPlans::class, 'client');
     }
 }

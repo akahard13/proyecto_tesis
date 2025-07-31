@@ -5,6 +5,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import ConfirmModal from '@/Components/ConfirmModal';
 import { can } from '@/Utils/Permissions';
+import { BsReceipt } from "react-icons/bs";
 
 export default function Main({ client, data = [] }) {
     const permissions = usePage().props.auth.permissions;
@@ -109,7 +110,7 @@ export default function Main({ client, data = [] }) {
                                     <td className="px-6 py-4 text-sm">{item.frequency}</td>
                                     <td className="px-6 py-4 text-sm">{item.start_date}</td>
                                     <td className="px-6 py-4 text-sm">{item.end_date}</td>
-                                    <td className='px-6 py-4 text-sm'>{item.active?'Sí':'No'}</td>
+                                    <td className='px-6 py-4 text-sm'>{item.active ? 'Sí' : 'No'}</td>
                                     <td className="px-6 py-4 text-sm">C$ {Number(item.amount).toLocaleString()}</td>
                                     <td className="px-6 py-4 text-sm flex gap-2">
                                         {/* {can('payments_plans.update', permissions) && (
@@ -127,6 +128,17 @@ export default function Main({ client, data = [] }) {
                                             >
                                                 <FaRegTrashAlt className="w-6 h-6" title="Eliminar" />
                                             </button>
+                                        )}
+                                        {can('payments_plans.view', permissions) && (
+                                            <a
+                                                href={route('payments_plans.receipt', item.id)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-factor-primary hover:text-blue-800 ml-4"
+                                                title="Ver Recibo"
+                                            >
+                                                <BsReceipt className="w-6 h-6" />
+                                            </a>
                                         )}
                                     </td>
                                 </tr>

@@ -117,4 +117,11 @@ class PaymentPlansController extends Controller
         $this->_service->destroy($payment);
         return redirect()->route('payments_plans', $payment->client)->with('success', 'Pago eliminado.');
     }
+    public function receipt($id)
+    {
+        $payment = PaymentPlans::with('client', 'client.gender', 'client.payments_plans')->findOrFail($id);
+        return Inertia::render('PaymentsPlans/Receipt', [
+            'payment' => $payment,
+        ]);
+    }
 }
