@@ -12,7 +12,6 @@ use App\Http\Controllers\System\PermissionController;
 use App\Http\Controllers\Catalogs\CategoriesController;
 use App\Http\Controllers\OutgoingsController;
 use App\Http\Controllers\PaymentEmployeesController;
-use App\Models\Outcomings;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -87,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/incomings/{incoming}/update', [IncomingsController::class, 'update'])->name('incomings.update');
     Route::delete('/incomings/{incoming}/delete', [IncomingsController::class, 'delete'])->name('incomings.delete');
     Route::post('/incomings/store', [IncomingsController::class, 'store'])->name('incomings.store');
-    //OUTCOMINGS ROUTES
+    //OUTGOINGS ROUTES
     Route::get('/outgoings', [OutgoingsController::class, 'index'])->name('outgoings');
     Route::get('/outgoings/create', [OutgoingsController::class, 'create'])->name('outgoings.create');
     Route::get('/outgoings/{outgoing}/edit', [OutgoingsController::class, 'edit'])->name('outgoings.edit');

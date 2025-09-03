@@ -18,7 +18,7 @@ class CategoriesServices
         $categories = new Categories([
             'name' => $data->name,
             'incoming' => $data->incoming ?? false,
-            'outcoming' => $data->outcoming ?? false,
+            'outgoing' => $data->outgoing ?? false,
             'active' => true,
             'deleted' => false,
         ]);
@@ -33,7 +33,7 @@ class CategoriesServices
         if ($categories) {
             $categories->name = $data->name;
             $categories->incoming = $data->incoming ?? false;
-            $categories->outcoming = $data->outcoming ?? false;
+            $categories->outgoing = $data->outgoing ?? false;
             $categories->save();
             return $categories;
         }

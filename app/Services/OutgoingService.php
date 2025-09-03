@@ -21,7 +21,7 @@ class OutgoingService
 
     public function getOutgoingsCategories()
     {
-        return Categories::where('outcoming', true)
+        return Categories::where('outgoing', true)
             ->where('active', true)
             ->where('deleted', false)
             ->get();
@@ -29,27 +29,27 @@ class OutgoingService
 
     public function store($data)
     {
-        $outcoming = new Outgoings([
+        $outgoing = new Outgoings([
             'category_id' => $data->category_id,
             'amount' => $data->amount,
             'registered_at' => $data->registered_at,
             'description' => $data->description
         ]);
-        $outcoming->save();
-        return $outcoming;
+        $outgoing->save();
+        return $outgoing;
     }
-    public function update($data, $outcoming)
+    public function update($data, $outgoing)
     {
-        $outcoming->category_id = $data->category_id;
-        $outcoming->amount = $data->amount;
-        $outcoming->registered_at = $data->registered_at;
-        $outcoming->description = $data->description;
-        $outcoming->save();
-        return $outcoming;
+        $outgoing->category_id = $data->category_id;
+        $outgoing->amount = $data->amount;
+        $outgoing->registered_at = $data->registered_at;
+        $outgoing->description = $data->description;
+        $outgoing->save();
+        return $outgoing;
     }
-    public function delete($outcoming)
+    public function delete($outgoing)
     {
-        //$paymentemployee = PaymentPlans::where('id', $outcoming->payment_employee_id)->first();
+        //$paymentemployee = PaymentPlans::where('id', $outgoing->payment_employee_id)->first();
         // if ($paymentplan) {
         //     $paymentplan->deleted = true;
         //     $paymentplan->active = false;
@@ -64,8 +64,8 @@ class OutgoingService
         //         $nextPlan->save();
         //     }
         // }
-        $outcoming->deleted = true;
-        $outcoming->save();
-        return $outcoming;
+        $outgoing->deleted = true;
+        $outgoing->save();
+        return $outgoing;
     }
 }

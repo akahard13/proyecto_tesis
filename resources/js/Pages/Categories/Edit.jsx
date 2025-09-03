@@ -9,7 +9,7 @@ export default function EditCategory({ categories }) {
     const { data, setData, put, processing, errors } = useForm({
         name: categories?.name || '',
         incoming: categories?.incoming || false,
-        outcoming: categories?.outcoming || false,
+        outgoing: categories?.outgoing || false,
     });
 
     const handleSubmit = (e) => {
@@ -52,10 +52,10 @@ export default function EditCategory({ categories }) {
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
-                            id="outcoming"
-                            name="outcoming"
-                            checked={data.outcoming}
-                            onChange={(e) => setData('outcoming', e.target.checked)}
+                            id="outgoing"
+                            name="outgoing"
+                            checked={data.outgoing}
+                            onChange={(e) => setData('outgoing', e.target.checked)}
                             className="form-checkbox border-gray-300 text-factor-primary"
                         />
                         <span className="text-gray-700 font-medium">Egresos</span>

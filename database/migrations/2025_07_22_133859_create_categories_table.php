@@ -15,15 +15,15 @@ return new class extends Migration
         Schema::create('catalogs.categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('outcoming');
+            $table->boolean('outgoing');
             $table->boolean('incoming');
             $table->boolean('active')->default(true);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
         DB::table('catalogs.categories')->insert([
-            ['name' => 'Planes', 'outcoming' => false, 'incoming' => true, 'active' => true, 'deleted' => false],
-            ['name' => 'Salarios', 'outcoming' => true, 'incoming' => false, 'active' => true, 'deleted' => false],
+            ['name' => 'Planes', 'outgoing' => false, 'incoming' => true, 'active' => true, 'deleted' => false],
+            ['name' => 'Salarios', 'outgoing' => true, 'incoming' => false, 'active' => true, 'deleted' => false],
         ]);
     }
 

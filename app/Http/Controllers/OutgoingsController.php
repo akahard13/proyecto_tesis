@@ -52,7 +52,7 @@ class OutgoingsController extends Controller
             'description' => 'required|string|max:500'
         ]);
         try {
-            $outcoming = $this->_service->store($request);
+            $outgoing = $this->_service->store($request);
             return redirect()->route('outgoings')->with('success', 'Egreso creado correctamente.');
         } catch (Exception $e) {
             return $this->respuestaJson(['error' => $e->getMessage()], 500);

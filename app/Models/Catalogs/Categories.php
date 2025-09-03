@@ -9,13 +9,13 @@ class Categories extends Model
     protected $table = 'catalogs.categories';
     protected $fillable = [
         'name',
-        'outcoming',
+        'outgoing',
         'incoming',
         'active',
         'deleted'
     ];
     protected $casts = [
-        'outcoming' => 'boolean',
+        'outgoing' => 'boolean',
         'incoming' => 'boolean',
         'active' => 'boolean',
         'deleted' => 'boolean'

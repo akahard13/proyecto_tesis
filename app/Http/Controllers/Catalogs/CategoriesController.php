@@ -36,7 +36,7 @@ class CategoriesController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'incoming' => 'boolean',
-            'outcoming' => 'boolean',
+            'outgoing' => 'boolean',
         ]);
 
         $this->_service->store($request);
@@ -56,7 +56,7 @@ class CategoriesController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'incoming' => 'boolean',
-            'outcoming' => 'boolean',
+            'outgoing' => 'boolean',
         ]);
 
         $this->_service->update($request, $id);

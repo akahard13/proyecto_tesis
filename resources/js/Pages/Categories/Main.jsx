@@ -67,7 +67,7 @@ export default function CategoriesMain({ categories }) {
                                 <td className="px-6 py-4 text-sm">{category.id}</td>
                                 <td className="px-6 py-4 text-sm">{category.name}</td>
                                 <td className="px-6 py-4 text-sm">{category.incoming ? 'Sí' : 'No'}</td>
-                                <td className="px-6 py-4 text-sm">{category.outcoming ? 'Sí' : 'No'}</td>
+                                <td className="px-6 py-4 text-sm">{category.outgoing ? 'Sí' : 'No'}</td>
                                 {showActions && (
                                     <td className="px-6 py-4 text-sm flex items-center gap-4">
                                         {can('categories.update', permissions) && (
