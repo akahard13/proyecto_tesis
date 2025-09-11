@@ -21,9 +21,12 @@ class ClientServices
             ->where('c.active', true)->get();
     }
 
-    public function update($request, $id)
+    public function update($request, $img, $id)
     {
         $client = Clients::find($id);
+        if($img){
+            $client->image = $img;
+        }
         $client->name = ucfirst($request->name);
         $client->lastname = ucfirst($request->lastname);
         $client->birthday = $request->birthday;
@@ -34,12 +37,12 @@ class ClientServices
         $client->save();
     }
 
-    public function toggleLinkUser($id){
-        $user= User::where('table_reference', 'client')->where('reference_id',$id)->first();
-        $user->active=!$user->active;
-        $user->deleted=!$user->deleted;
+    public function toggleLinkUser($id)
+    {
+        $user = User::where('table_reference', 'client')->where('reference_id', $id)->first();
+        $user->active = !$user->active;
+        $user->deleted = !$user->deleted;
         $user->save();
         return $user;
     }
 }
-
