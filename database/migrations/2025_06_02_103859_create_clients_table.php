@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
+            $table->string('image', 500)->nullable();
             $table->date('birthday')->nullable();
             $table->foreignId('gender_id')->constrained('catalogs.gender');
             $table->string('code')->unique();

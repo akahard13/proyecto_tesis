@@ -8,6 +8,8 @@ use App\Services\ClientServices;
 use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
+
 
 class ClientController extends Controller
 {
@@ -40,6 +42,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'birthday' => 'required|date',
@@ -48,8 +51,12 @@ class ClientController extends Controller
             'code' => 'required|numeric',
             'cellphone' => 'required|numeric'
         ]);
+
         try {
+            $path = $request->file('image')->store('uploads', 'public');
+            $url = Storage::url($path);
             $cliente = $this->insertInto('clients', [
+                'image' => env('APP_URL') . $url,
                 'name' => ucfirst($request->name),
                 'lastname' => ucfirst($request->lastname),
                 'birthday' => $request->birthday,
@@ -74,9 +81,10 @@ class ClientController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Clients $client)
     {
         $request->validate([
+            'new_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'birthday' => 'required|date',
@@ -86,7 +94,14 @@ class ClientController extends Controller
             'cellphone' => 'required|numeric'
         ]);
         try {
-            $this->_service->update($request, $id);
+            $img = null;
+            if ($request->new_image) {
+                $path = $request->file('new_image')->store('uploads', 'public');
+                $url = Storage::url($path);
+                $img = env('APP_URL') . $url;
+            }
+
+            $this->_service->update($request, $img, $client->id);
             return redirect()->route('clients',)->with('success', 'Cliente actualizado correctamente.');
         } catch (Exception $e) {
             return $this->respuestaJson(['error' => $e->getMessage()], 500);
